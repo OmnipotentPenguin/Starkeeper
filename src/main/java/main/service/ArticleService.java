@@ -26,11 +26,9 @@ public class ArticleService {
 	public Article updateArticle(Article article, Long id) {
 		Article toUpdate = repo.getOne(id);
 		toUpdate.setName(article.getName());
-		toUpdate.setUrl(article.getUrl());
+		toUpdate.setUrl(article.getUrl());		
 		
-		
-		return repo.save(toUpdate);
-		
+		return repo.save(toUpdate);		
 	}
 	
 	public String deleteArticle(Long id) {

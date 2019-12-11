@@ -14,27 +14,16 @@ public class Article {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	private String name;
-	
-	private String description;
-	
-	private String area;
-	
-	private String source;
-	
-	private int rating;
-	
-	private String[] tagList;
-	
+	private String name;	
+	private String description;	
+	private String area;	
+	private String source;	
+	private int rating;	
+	private String[] tagList;	
 	private String[] comments;
-	
-	private String url;
-	
-	private Date saveDate;
-	
-	private Date publishDate;
-	
+	private String url;	
+	private Date saveDate;	
+	private Date publishDate;	
 	private boolean favourite;
 	
 	public Article() {
