@@ -1,12 +1,13 @@
 package main.repository.entities;
 
-import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Article {
@@ -18,13 +19,14 @@ public class Article {
 	private String description;	
 	private String area;	
 	private String source;	
-	private int rating;	
-	private String[] tagList;	
-	private String[] comments;
+	private int rating;
 	private String url;	
 	private Date saveDate;	
 	private Date publishDate;	
 	private boolean favourite;
+	
+	@OneToMany
+	private List<TagList> tagList;
 	
 	public Article() {
 	}
@@ -82,20 +84,12 @@ public class Article {
 		this.rating = rating;
 	}
 
-	public String[] getTagList() {
+	public List<TagList> getTagList() {
 		return tagList;
 	}
 
-	public void setTagList(String[] tagList) {
+	public void setTagList(List<TagList> tagList) {
 		this.tagList = tagList;
-	}
-
-	public String[] getComments() {
-		return comments;
-	}
-
-	public void setComments(String[] comments) {
-		this.comments = comments;
 	}
 
 	public String getUrl() {
@@ -135,7 +129,6 @@ public class Article {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((area == null) ? 0 : area.hashCode());
-		result = prime * result + Arrays.hashCode(comments);
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (favourite ? 1231 : 1237);
 		result = prime * result + (int) (id ^ (id >>> 32));
@@ -144,7 +137,7 @@ public class Article {
 		result = prime * result + rating;
 		result = prime * result + ((saveDate == null) ? 0 : saveDate.hashCode());
 		result = prime * result + ((source == null) ? 0 : source.hashCode());
-		result = prime * result + Arrays.hashCode(tagList);
+		result = prime * result + ((tagList == null) ? 0 : tagList.hashCode());
 		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
 	}
@@ -162,8 +155,6 @@ public class Article {
 			if (other.area != null)
 				return false;
 		} else if (!area.equals(other.area))
-			return false;
-		if (!Arrays.equals(comments, other.comments))
 			return false;
 		if (description == null) {
 			if (other.description != null)
@@ -196,7 +187,10 @@ public class Article {
 				return false;
 		} else if (!source.equals(other.source))
 			return false;
-		if (!Arrays.equals(tagList, other.tagList))
+		if (tagList == null) {
+			if (other.tagList != null)
+				return false;
+		} else if (!tagList.equals(other.tagList))
 			return false;
 		if (url == null) {
 			if (other.url != null)
@@ -205,8 +199,6 @@ public class Article {
 			return false;
 		return true;
 	}
-	
-	
 	
 	
 }

@@ -28,8 +28,7 @@ public class ArticleController {
 	
 	@GetMapping("/getArticle")
 	public List<Article> getArticles(){
-		return service.getArticles();
-		
+		return service.getArticles();		
 	}
 	
 	@PostMapping("/createArticle")
@@ -39,14 +38,11 @@ public class ArticleController {
 	
 	@PutMapping("/updateArticle")
 	public Article putArticle(@PathParam("id") Long id, @RequestBody Article article) {
-		return null;		
+		return this.service.updateArticle(article, id);
 	}
 	
 	@DeleteMapping("/deleteArticle/{id}")
 	public void deleteArticle(@PathVariable Long id) {
-		this.service.deleteArticle(id);
-		
+		this.service.deleteArticle(id);		
 	}
-	
-
 }
