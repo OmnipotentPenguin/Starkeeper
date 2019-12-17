@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import main.repository.entities.Article;
 import main.repository.entities.ArticleTag;
 import main.rest.ArticleTagController;
 

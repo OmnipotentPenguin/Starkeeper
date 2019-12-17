@@ -21,8 +21,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import main.repository.ArticleTagRepository;
+import main.repository.entities.Article;
 import main.repository.entities.ArticleTag;
-import main.repository.entities.TagList;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -42,17 +42,13 @@ public class ArticleTagRestTests {
 	private ArticleTag testArticleTag;
 
 	private ArticleTag testArticleTagWithID;
-	
-	private List<TagList> tagList;
 
 	@Before
 	public void init() {
 		this.repo.deleteAll();
-
 		this.testArticleTag = new ArticleTag("Fusion");
 		this.testArticleTagWithID = this.repo.save(this.testArticleTag);
 		this.id = this.testArticleTagWithID.getId();
-		this.tagList = this.testArticleTagWithID.getTagList();
 	}
 
 	@Test
@@ -89,8 +85,7 @@ public class ArticleTagRestTests {
 		ArticleTag newArticleTag = new ArticleTag("Ducks");
 		ArticleTag updatedTag = new ArticleTag(newArticleTag.getName());
 		updatedTag.setId(this.id);
-		updatedTag.setTagList(this.tagList);
-
+		
 		String result = this.mock
 				.perform(request(HttpMethod.PUT, "/updateTag/?id=" + this.id).accept(MediaType.APPLICATION_JSON)
 						.contentType(MediaType.APPLICATION_JSON).content(this.mapper.writeValueAsString(newArticleTag)))

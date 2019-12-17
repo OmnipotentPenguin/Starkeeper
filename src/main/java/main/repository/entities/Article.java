@@ -3,13 +3,17 @@ package main.repository.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table
 public class Article {
 	
 	@Id
@@ -20,13 +24,14 @@ public class Article {
 	private String area;	
 	private String source;	
 	private int rating;
-	private String url;	
+	private String url;
 	private Date saveDate;	
 	private Date publishDate;	
 	private boolean favourite;
 	
-	@OneToMany
-	private List<TagList> tagList;
+	@OneToMany (cascade = CascadeType.ALL)
+	@JoinColumn(name="tagged_article_id")
+	private List<ArticleTag> articleTags;
 	
 	public Article() {
 	}
@@ -84,12 +89,12 @@ public class Article {
 		this.rating = rating;
 	}
 
-	public List<TagList> getTagList() {
-		return tagList;
+	public List<ArticleTag> getTagList() {
+		return articleTags;
 	}
 
-	public void setTagList(List<TagList> tagList) {
-		this.tagList = tagList;
+	public void setTagList(List<ArticleTag> articleTags) {
+		this.articleTags = articleTags;
 	}
 
 	public String getUrl() {
@@ -137,7 +142,7 @@ public class Article {
 		result = prime * result + rating;
 		result = prime * result + ((saveDate == null) ? 0 : saveDate.hashCode());
 		result = prime * result + ((source == null) ? 0 : source.hashCode());
-		result = prime * result + ((tagList == null) ? 0 : tagList.hashCode());
+		result = prime * result + ((articleTags == null) ? 0 : articleTags.hashCode());
 		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
 	}
@@ -187,10 +192,10 @@ public class Article {
 				return false;
 		} else if (!source.equals(other.source))
 			return false;
-		if (tagList == null) {
-			if (other.tagList != null)
+		if (articleTags == null) {
+			if (other.articleTags != null)
 				return false;
-		} else if (!tagList.equals(other.tagList))
+		} else if (!articleTags.equals(other.articleTags))
 			return false;
 		if (url == null) {
 			if (other.url != null)

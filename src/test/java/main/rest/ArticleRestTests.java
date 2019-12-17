@@ -22,7 +22,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import main.repository.ArticleRepository;
 import main.repository.entities.Article;
-import main.repository.entities.TagList;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -43,7 +42,6 @@ public class ArticleRestTests {
 
 	private Article testArticleWithID;
 	
-	private List<TagList> tagList;
 
 	@Before
 	public void init() {
@@ -52,7 +50,6 @@ public class ArticleRestTests {
 		this.testArticle = new Article("Fusion", "www.url.com");
 		this.testArticleWithID = this.repo.save(this.testArticle);
 		this.id = this.testArticleWithID.getId();
-		this.tagList = this.testArticleWithID.getTagList();
 	}
 
 	@Test
@@ -89,7 +86,6 @@ public class ArticleRestTests {
 		Article newArticle = new Article("Ducks Weekly", "www.nature.com");
 		Article updatedArticle = new Article(newArticle.getName(), newArticle.getUrl());
 		updatedArticle.setId(this.id);
-		updatedArticle.setTagList(this.tagList);
 
 		String result = this.mock
 				.perform(request(HttpMethod.PUT, "/updateArticle/?id=" + this.id).accept(MediaType.APPLICATION_JSON)
