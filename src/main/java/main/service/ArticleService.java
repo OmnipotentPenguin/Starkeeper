@@ -13,21 +13,15 @@ public class ArticleService {
 	
 	@Autowired
 	private ArticleRepository repo;
-		
-	private ArticleService(ArticleRepository repo) {
-		this.repo = repo;
-	}
 	
 	public Article createArticle(Article newArticle) {
-		return repo.save(newArticle);
-		
+		return repo.save(newArticle);		
 	}	
 	
 	public Article updateArticle(Article article, Long id) {
 		Article toUpdate = repo.getOne(id);
 		toUpdate.setName(article.getName());
 		toUpdate.setUrl(article.getUrl());		
-		
 		return repo.save(toUpdate);		
 	}
 	
@@ -39,13 +33,4 @@ public class ArticleService {
 	public List<Article> getArticles() {
 		return repo.findAll();
 	}
-	
-	public List<Article> getArticlesByName(String name) {
-		return repo.findByName(name);
-	}
-	
-	public List<Article> getArticlesByFavourite(boolean favourite) {
-		return repo.findByFavourite(favourite);
-	}
-
 }
