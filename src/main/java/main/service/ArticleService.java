@@ -13,10 +13,6 @@ public class ArticleService {
 	
 	@Autowired
 	private ArticleRepository repo;
-		
-	private ArticleService(ArticleRepository repo) {
-		this.repo = repo;
-	}
 	
 	public Article createArticle(Article newArticle) {
 		return repo.save(newArticle);		

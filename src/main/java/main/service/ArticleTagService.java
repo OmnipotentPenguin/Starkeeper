@@ -13,10 +13,6 @@ public class ArticleTagService {
 	
 	@Autowired
 	private ArticleTagRepository repo;
-		
-	private ArticleTagService(ArticleTagRepository repo) {
-		this.repo = repo;
-	}
 	
 	public ArticleTag createArticleTag(ArticleTag newTag) {
 		return repo.save(newTag);		

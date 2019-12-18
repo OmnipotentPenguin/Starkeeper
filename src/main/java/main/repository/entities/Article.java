@@ -3,11 +3,9 @@ package main.repository.entities;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,8 +26,7 @@ public class Article {
 	private Date publishDate;	
 	private boolean favourite;
 	
-	@OneToMany (cascade = CascadeType.ALL)
-	@JoinColumn(name="tagged_article_id")
+	@OneToMany
 	private List<ArticleTag> articleTags;
 	
 	public Article() {
@@ -126,83 +123,5 @@ public class Article {
 
 	public void setFavourite(boolean favourite) {
 		this.favourite = favourite;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((area == null) ? 0 : area.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + (favourite ? 1231 : 1237);
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((publishDate == null) ? 0 : publishDate.hashCode());
-		result = prime * result + rating;
-		result = prime * result + ((saveDate == null) ? 0 : saveDate.hashCode());
-		result = prime * result + ((source == null) ? 0 : source.hashCode());
-		result = prime * result + ((articleTags == null) ? 0 : articleTags.hashCode());
-		result = prime * result + ((url == null) ? 0 : url.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Article other = (Article) obj;
-		if (area == null) {
-			if (other.area != null)
-				return false;
-		} else if (!area.equals(other.area))
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (favourite != other.favourite)
-			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (publishDate == null) {
-			if (other.publishDate != null)
-				return false;
-		} else if (!publishDate.equals(other.publishDate))
-			return false;
-		if (rating != other.rating)
-			return false;
-		if (saveDate == null) {
-			if (other.saveDate != null)
-				return false;
-		} else if (!saveDate.equals(other.saveDate))
-			return false;
-		if (source == null) {
-			if (other.source != null)
-				return false;
-		} else if (!source.equals(other.source))
-			return false;
-		if (articleTags == null) {
-			if (other.articleTags != null)
-				return false;
-		} else if (!articleTags.equals(other.articleTags))
-			return false;
-		if (url == null) {
-			if (other.url != null)
-				return false;
-		} else if (!url.equals(other.url))
-			return false;
-		return true;
-	}
-	
-	
+	}	
 }

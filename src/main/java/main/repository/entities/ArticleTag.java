@@ -3,17 +3,16 @@ package main.repository.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class ArticleTag {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private long id;
 	
-	@Column(name = "tag_name")
+	@Column(name = "tag_name", unique = true)
 	private String name;
 	
 	public ArticleTag() {
