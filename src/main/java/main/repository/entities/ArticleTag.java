@@ -12,7 +12,7 @@ public class ArticleTag {
 	@GeneratedValue
 	private long id;
 	
-	@Column(name = "tag_name", unique = true)
+	@Column(name = "tag_name")
 	private String name;
 	
 	public ArticleTag() {
