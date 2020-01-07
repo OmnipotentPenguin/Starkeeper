@@ -6,18 +6,6 @@ $(window).on("load resize ", function () {
   $('.tbl-header').css({ 'padding-right': scrollWidth });
 }).resize();
 
-function loadHomePage(){
-  console.log("Homepage loaded")
-}
-
-function loadArticlePage(){
-  console.log("Article page loaded")
-}
-
-function loadNewArticlePage(){
-  console.log("new article loaded")
-}
-
 function toggleFavCreate(){
 
   let star = document.getElementById("favToggle");
@@ -27,7 +15,6 @@ function toggleFavCreate(){
   } else {
     star.className = "glyphicon glyphicon-star-empty";
   }
-
 }
 
 $(document).ready(function() {
@@ -36,3 +23,56 @@ $(document).ready(function() {
     tags: true
     });
 });
+
+
+
+function submitArticle() {
+
+
+      checkTags();
+
+      let star = document.getElementById("favToggle");
+      let isFav = false;
+
+      if (star.className === "glyphicon glyphicon-star-empty"){
+        isFav = false;
+      } else {
+        isFav = true;
+      }
+
+    axios.post("/createArticle", {
+      name: document.getElementById("na_name").value,
+      description: document.getElementById("na_description").value,
+      source: document.getElementById("na_source").value,
+      rating: document.getElementById("na_rating").value,
+      url: document.getElementById("na_url").value,
+      favourite: isFav,
+      tagList: currentTags
+    })
+        .then((response) => {            
+            console.log(response.data);
+        }).catch((error) => {
+            console.error(error);
+        });
+}
+
+let currentTags = [];
+
+function checkTags(){
+
+  let chosenTags = document.querySelectorAll(".select2-selection__choice");
+
+  for (let i = 0; i < chosenTags.length; ++i) {
+    let tag = chosenTags[i].title;
+    axios.post("/createTag", {
+      name: tag
+    })
+    .then((response) => {
+            currentTags.push(response);
+            console.log(response.data);
+        }).catch((error) => {
+            console.error(error);
+        });
+  }
+  console.log(currentTags);
+}

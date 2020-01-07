@@ -55,9 +55,6 @@
                     <section>
                         <h1>STARS</h1>
 
-                        <form class="well form-horizontal" action=" " method="post" id="contact_form">
-                            <fieldset>
-
                                 <div class="tbl-header">
                                     <table cellpadding="0" cellspacing="0" border="0">
                                         <thead>
@@ -74,27 +71,27 @@
 
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                                <input name="article_name" placeholder="Article Name" class="form-control" type="text">
+                                                <input id="na_name" name="article_name" placeholder="Article Name" class="form-control" type="text">
                                             </div>
 
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                                <textarea name="comment" placeholder="Project Description" class="form-control"></textarea>
+                                                <textarea id="na_description" name="comment" placeholder="Project Description" class="form-control"></textarea>
                                             </div>
 
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
-                                                <input name="article_source" placeholder="Article Source" class="form-control" type="text">
+                                                <input id="na_source" name="article_source" placeholder="Article Source" class="form-control" type="text">
                                             </div>
 
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                                                <input name="website" placeholder="Website URL" class="form-control" type="url">
+                                                <input id="na_url" name="website" placeholder="Website URL" class="form-control" type="url">
                                             </div>
 
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-star-empty"></i></span>
-                                                <input name="rating" placeholder="Rating 1-5" class="form-control" type="number" min="1" max="5">
+                                                <input id="na_rating" name="rating" placeholder="Rating 1-5" class="form-control" type="number" min="1" max="5">
                                             </div>
 
                                             <div class="input-group" class="_box">
@@ -111,7 +108,9 @@
                                          <div class="input-group">
                                             <span class="input-group-addon"><i id="favToggle" class="glyphicon glyphicon-star-empty" onclick="toggleFavCreate();"></i></span>
                                             <input name="favourite" class="form-control" type="hidden">
-                                        </div>   
+                                        </div>
+
+                                        <button onclick="submitArticle();">Submit</button>
                                         
                                     </tbody>
                                 </table>

@@ -1,20 +1,10 @@
+"use strict";
+
 // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
 $(window).on("load resize ", function () {
   var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
   $('.tbl-header').css({ 'padding-right': scrollWidth });
 }).resize();
-
-function loadHomePage(){
-  console.log("Homepage loaded")
-}
-
-function loadArticlePage(){
-  console.log("Article page loaded")
-}
-
-function loadNewArticlePage(){
-  console.log("new article loaded")
-}
 
 function toggleFavCreate(){
 
@@ -25,63 +15,64 @@ function toggleFavCreate(){
   } else {
     star.className = "glyphicon glyphicon-star-empty";
   }
-
 }
 
-function toggleFavourite(){
-
-}
-
-function editArticle(){
-
-}
-
-function deleteArticle(){
-
-}
-
-/* CREATE TAG FUNCTIONALITY */
-
-// ADD JQUERY
-(function () {
-  var tagList = [];
-  
-  // cacheing the DOM elements
-  var $tagList = $("#tagList");
-  var $newTag = $("#newTag");
-
-  // initial render
-  tagList_render();
-  
-  // always put logic sections and render sections in seperate functions/class
-  // trust me it will help a lot on big projects!
-  function tagList_render () {
-    $tagList.empty();
-    tagList.map (function (_tag) {
-      var temp = '<li>'+ _tag +'<span class="rmTag">&times;</span></li>';
-      $tagList.append(temp);
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2({
+    width: '100%',
+    tags: true
     });
-  };
-  
-  // key events
-  // Add new tag on "ENTER" press
-  $newTag.on('keyup', function (e) {
-    // enter keycode 13
-    if (e.keyCode == 13) {
-      var newTag = $("#newTag").val();
-      if( newTag.replace(/\s/g, '') !== '' ){
-        tagList.push(newTag);
-        $newTag.val('');
-        tagList_render();
+});
+
+
+
+function submitArticle() {
+
+
+      checkTags();
+
+      let star = document.getElementById("favToggle");
+      let isFav = false;
+
+      if (star.className === "glyphicon glyphicon-star-empty"){
+        isFav = false;
+      } else {
+        isFav = true;
       }
-    }
-  });
-  
-  // button events
-  // Remove Tag
-  $tagList.on("click", "li>span.rmTag", function(){
-    var index = $(this).parent().index();
-    tagList.splice(index, 1);
-    tagList_render();
-  });
-})();
+
+    axios.post("/createArticle", {
+      name: document.getElementById("na_name").value,
+      description: document.getElementById("na_description").value,
+      source: document.getElementById("na_source").value,
+      rating: document.getElementById("na_rating").value,
+      url: document.getElementById("na_url").value,
+      favourite: isFav,
+      tagList: currentTags
+    })
+        .then((response) => {            
+            console.log(response.data);
+        }).catch((error) => {
+            console.error(error);
+        });
+}
+
+let currentTags = [];
+
+function checkTags(){
+
+  let chosenTags = document.querySelectorAll(".select2-selection__choice");
+
+  for (let i = 0; i < chosenTags.length; ++i) {
+    let tag = chosenTags[i].title;
+    axios.post("/createTag", {
+      name: tag
+    })
+    .then((response) => {
+            currentTags.push(response);
+            console.log(response.data);
+        }).catch((error) => {
+            console.error(error);
+        });
+  }
+  console.log(currentTags);
+}

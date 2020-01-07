@@ -17,7 +17,7 @@ public class ArticleTagService {
 	
 	public ArticleTag createArticleTag(ArticleTag newTag) {
 		if (repo.existsTagByName(newTag.getName())) {
-			return getArticleTag(newTag.getId());
+			return getArticleTag(newTag.getName());			 
 		}
 		else {
 			return repo.save(newTag);	
@@ -37,6 +37,10 @@ public class ArticleTagService {
 	
 	public ArticleTag getArticleTag(Long id) {
 		return this.repo.findById(id).orElseThrow(() -> new TagNotFoundException());
+	}
+	
+	public ArticleTag getArticleTag(String name) {
+		return this.repo.findTagByName(name).orElseThrow(() -> new TagNotFoundException());
 	}
 	
 	public List<ArticleTag> getArticleTags() {
