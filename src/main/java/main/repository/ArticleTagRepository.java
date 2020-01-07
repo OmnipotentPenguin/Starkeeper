@@ -6,4 +6,5 @@ import main.repository.entities.ArticleTag;
 
 public interface ArticleTagRepository extends JpaRepository<ArticleTag, Long>{
 	
+	boolean existsTagByName(String name);
 }

@@ -1,3 +1,5 @@
+"use strict";
+
 // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
 $(window).on("load resize ", function () {
   var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
@@ -28,60 +30,9 @@ function toggleFavCreate(){
 
 }
 
-function toggleFavourite(){
-
-}
-
-function editArticle(){
-
-}
-
-function deleteArticle(){
-
-}
-
-/* CREATE TAG FUNCTIONALITY */
-
-// ADD JQUERY
-(function () {
-  var tagList = [];
-  
-  // cacheing the DOM elements
-  var $tagList = $("#tagList");
-  var $newTag = $("#newTag");
-
-  // initial render
-  tagList_render();
-  
-  // always put logic sections and render sections in seperate functions/class
-  // trust me it will help a lot on big projects!
-  function tagList_render () {
-    $tagList.empty();
-    tagList.map (function (_tag) {
-      var temp = '<li>'+ _tag +'<span class="rmTag">&times;</span></li>';
-      $tagList.append(temp);
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2({
+    width: '100%',
+    tags: true
     });
-  };
-  
-  // key events
-  // Add new tag on "ENTER" press
-  $newTag.on('keyup', function (e) {
-    // enter keycode 13
-    if (e.keyCode == 13) {
-      var newTag = $("#newTag").val();
-      if( newTag.replace(/\s/g, '') !== '' ){
-        tagList.push(newTag);
-        $newTag.val('');
-        tagList_render();
-      }
-    }
-  });
-  
-  // button events
-  // Remove Tag
-  $tagList.on("click", "li>span.rmTag", function(){
-    var index = $(this).parent().index();
-    tagList.splice(index, 1);
-    tagList_render();
-  });
-})();
+});

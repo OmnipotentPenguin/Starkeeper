@@ -6,14 +6,15 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
-@Table
 public class Article {
 	
 	@Id
+	@JoinColumn
 	@GeneratedValue
 	private long id;
 	private String name;	
@@ -26,7 +27,11 @@ public class Article {
 	private Date publishDate;	
 	private boolean favourite;
 	
-	@OneToMany
+	@ManyToMany
+	@JoinTable(
+			name = "article_tags", 
+			joinColumns = @JoinColumn(name = "article_id"), 
+			inverseJoinColumns = @JoinColumn(name = "tag_id"))
 	private List<ArticleTag> articleTags;
 	
 	public Article() {
