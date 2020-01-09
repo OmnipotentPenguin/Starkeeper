@@ -51,4 +51,10 @@ public class ArticleService {
 		}		
 		return this.repo.saveAndFlush(toUpdate);
 	}
+
+	public Article toggleFavouriteArticle(Long id) {
+		Article toUpdate = findArticleByID(id);
+		toUpdate.setFavourite(!toUpdate.getFavourite());				
+		return this.repo.saveAndFlush(toUpdate);
+	}
 }

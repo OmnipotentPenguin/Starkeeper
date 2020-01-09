@@ -27,22 +27,22 @@ public class ArticleTagController {
 	}
 	
 	@GetMapping("/getTag")
-	public List<ArticleTag> getArticles(){
+	public List<ArticleTag> getArticleTags(){
 		return service.getArticleTags();		
 	}
 	
 	@PostMapping("/createTag")
-	public ArticleTag postArticle(@RequestBody ArticleTag newTag) {
+	public ArticleTag postArticleTag(@RequestBody ArticleTag newTag) {
 		return service.createArticleTag(newTag);
 	}
 	
 	@PutMapping("/updateTag")
-	public ArticleTag putArticle(@PathParam("id") Long id, @RequestBody ArticleTag tag) {
+	public ArticleTag putArticleTag(@PathParam("id") Long id, @RequestBody ArticleTag tag) {
 		return this.service.updateArticleTag(tag, id);
 	}
 	
 	@DeleteMapping("/deleteTag/{id}")
-	public void deleteArticle(@PathVariable Long id) {
+	public void deleteArticleTag(@PathVariable Long id) {
 		this.service.deleteArticleTag(id);		
 	}
 }

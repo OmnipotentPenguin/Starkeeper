@@ -122,7 +122,7 @@ public class Article {
 		this.publishDate = publishDate;
 	}
 
-	public boolean isFavourite() {
+	public boolean getFavourite() {
 		return favourite;
 	}
 

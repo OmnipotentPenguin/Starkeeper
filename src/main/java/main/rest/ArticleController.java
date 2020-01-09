@@ -48,8 +48,13 @@ public class ArticleController {
 		this.service.deleteArticle(id);		
 	}
 	
-	@PatchMapping("/update/{id}")
+	@PatchMapping("/addTag/{id}")
 	public Article addTagToArticle(@PathVariable Long id, @RequestBody ArticleTag tag) {
 		return this.service.addTagToArticle(id, tag);
+	}
+	
+	@PatchMapping("/toggleFavourite/{id}")
+	public Article toggleFavouriteArticle(@PathVariable Long id) {
+		return this.service.toggleFavouriteArticle(id);
 	}
 }

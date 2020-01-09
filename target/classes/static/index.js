@@ -6,32 +6,44 @@ $(window).on("load resize ", function () {
   $('.tbl-header').css({ 'padding-right': scrollWidth });
 }).resize();
 
-function toggleFavCreate(){
+function toggleFavCreate() {
 
   let star = document.getElementById("favToggle");
 
-  if (star.className === "glyphicon glyphicon-star-empty"){
+  if (star.className === "glyphicon glyphicon-star-empty") {
     star.className = "glyphicon glyphicon-star";
   } else {
     star.className = "glyphicon glyphicon-star-empty";
   }
 }
 
-$(document).ready(function() {
-  $('.js-example-basic-multiple').select2({
-    width: '100%',
-    tags: true
-  });
-});
+function articleFavourite(articleID){
 
+  console.log("favourite toggled")
 
+  axios.patch("/toggleFavourite/" + articleID)
+    .then((response) => {
+    }).catch((error) => {
+      console.error(error);
+    });    
+}
+
+function articleEdit(articleID){
+
+}
+
+function articleDelete(articleID){
+
+}
+
+var tagData = [];
 
 function submitArticle() {
 
   let star = document.getElementById("favToggle");
   let isFav = false;
 
-  if (star.className === "glyphicon glyphicon-star-empty"){
+  if (star.className === "glyphicon glyphicon-star-empty") {
     isFav = false;
   } else {
     isFav = true;
@@ -45,111 +57,186 @@ function submitArticle() {
     url: document.getElementById("na_url").value,
     favourite: isFav
   })
-  .then((response) => {
-    checkTags(response.data.id);
-    
-  }).catch((error) => {
-    console.error(error);
-  });
+    .then((response) => {
+      checkTags(response.data.id);
+      console.log(response.data);
+      document.location.href = "create_article.html";
+    }).catch((error) => {
+      console.error(error);
+    });
 }
 
-function checkTags(articleID){
+function checkTags(articleID) {
 
   let chosenTags = document.querySelectorAll(".select2-selection__choice");
 
   for (let i = 0; i < chosenTags.length; ++i) {
     let tag = chosenTags[i].title;
-    axios.patch(("/update/"+articleID), {
+    axios.patch(("/addTag/" + articleID), {
       name: tag
     })
-    .then((response) => {      
+      .then((response) => {
+
+      }).catch((error) => {
+        console.error(error);
+      });
+  }
+}
+
+function insertNewRow(table, article) {
+
+  let row = table.insertRow(0);
+
+  let cell1 = row.insertCell(0);
+  let cell2 = row.insertCell(1);
+  let cell3 = row.insertCell(2);
+  let cell4 = row.insertCell(3);
+  let cell5 = row.insertCell(4);
+  let cell6 = row.insertCell(5);
+  let cell7 = row.insertCell(6);
+
+  cell1.innerHTML = article.id;
+  cell2.innerHTML = article.name;
+  cell3.innerHTML = article.description;
+  cell4.innerHTML = article.source;
+  cell5.innerHTML = article.rating;
+  cell6.innerHTML = article.url;
+
+  let favref = document.createElement("a");
+  favref.onclick = function() {articleFavourite(article.id);};
+  favref.className = "favourite-item";
+  favref.title = "Favourite";
+
+  let favicon = document.createElement("i");
+  favicon.className = "glyphicon glyphicon-star";
+  favref.appendChild(favicon);
+
+  let editref = document.createElement("a");
+  editref.onclick = null //articleEdit(article.id);
+  editref.className = "edit-item";
+  editref.title = "Edit";
+
+  let editicon = document.createElement("i");
+  editicon.className = "glyphicon glyphicon-pencil";
+  editref.appendChild(editicon);
+
+  let delref = document.createElement("a");
+  delref.onclick = null //articleDelete(article.id);
+  delref.className = "delete-item";
+  delref.title = "Delete";
+
+  let delicon = document.createElement("i");
+  delicon.className = "glyphicon glyphicon-trash";
+  delref.appendChild(delicon);
+
+  cell7.appendChild(favref);
+  cell7.appendChild(editref);
+  cell7.appendChild(delref);
+
+}
+
+function articlePage() {
+
+  let table = document.getElementById("myTable tbody");
+
+  axios.get("/getArticle")
+    .then((response) => {
       console.log(response.data);
+
+      let allArticles = response.data;
+
+      for (let article of allArticles) {
+
+        insertNewRow(table, article);
+
+      }
+
     }).catch((error) => {
       console.error(error);
     });
-  }
-  getArticles();
 }
 
-function getArticles(){
+function indexPage() {
+
+  let table = document.getElementById("myFavouritesTable tbody");
+
   axios.get("/getArticle")
-        .then((response) => {
-          console.log("refresh articles");
-            showArticles(response.data);
-        }).catch((error) => {
-            console.error(error);
-        });
+    .then((response) => {
+      console.log(response.data);
+
+      let allArticles = response.data;
+
+      for (let article of allArticles) {
+
+        if (article.favourite) {
+          insertNewRow(table, article);
+        }
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+
+  let table2 = document.getElementById("myLatestTable tbody");
+
+  axios.get("/getArticle")
+    .then((response) => {
+      console.log(response.data);
+
+      let allArticles = response.data;
+
+      for (let i = 0; i < allArticles.length; i++) {
+
+        if (allArticles.length > 6) {
+          let j = allArticles.length - (6 - i);
+          insertNewRow(table2, allArticles[j]);
+        } else {
+          insertNewRow(table2, allArticles[i])
+        }
+
+        if (i > 6) {
+          break;
+        }
+      }
+
+    }).catch((error) => {
+      console.error(error);
+    });
+
 }
 
-function showArticles(articles) {
+function createArticlePage() {
 
-  let articleTable = document.getElementById("article-table");
-  let template = document.getElementById("table-template");
+  let newTagData = [];
 
-    for (let article of articles) {
+  axios.get("/getTag")
+    .then((response) => {
 
+      let allTags = response.data;
 
-// Create an empty <tr> element and add it to the 1st position of the table:
-let row = articleTable.insertRow(0);
+      for (let tag of allTags) {
 
-// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-let cell0 = row.insertCell(0);
-let cell1 = row.insertCell(1);
-let cell2 = row.insertCell(2);
-let cell3 = row.insertCell(3);
-let cell4 = row.insertCell(4);
-let cell5 = row.insertCell(5);
+        let newTag =
+        {
+          "id": parseInt(tag.id),
+          "text": tag.name
+        };
 
-// Add some text to the new cells:
-cell0.innerHTML = article.id;
-cell1.innerHTML = article.name;
-cell1.innerHTML = article.description;
-cell1.innerHTML = article.area;
-cell1.innerHTML = article.source;
-cell1.innerHTML = "NEW CELL1";
+        newTagData.push(newTag);
+      }
 
-        // const newID = document.createElement("td")
-        // newID.className = "article-id"
-        // newID.innerText = article.id;
-        // newEntry.appendChild(newID);
+      tagData = newTagData;
 
-        // const newName = document.createElement("td")
-        // newName.className = "article-name"
-        // newName.innerText = article.name;
-        // newEntry.appendChild(newName);
+      $('.js-example-basic-multiple').select2({
+        width: '100%',
+        tags: true,
+        data: tagData,
+        placeholder: "  Input a tag then press Enter",
+        allowClear: true
+      });
 
-        // const newDesc = document.createElement("td")
-        // newDesc.className = "article-description"
-        // newDesc.innerText = article.description;
-        // newEntry.appendChild(newDesc);
+    }).catch((error) => {
+      console.error(error);
+    });
 
-        // const newArea = document.createElement("td")
-        // newArea.className = "article-area"
-        // newArea.innerText = article.area;
-        // newEntry.appendChild(newArea);
-
-        // const newSource = document.createElement("td")
-        // newSource.className = "article-source"
-        // newSource.innerText = article.source;
-        // newEntry.appendChild(newSource);
-
-
-
-
-        articleTable.appendChild(newEntry);
-    }
 }
 
-$("#addTableRow").click( function () {      
-  var row = $("<tr>");
-
-  row.append($("<td>Text-1</td>"))
-     .append($("<td>Text-2</td>"))
-     .append($("<td>Text-3</td>"))
-     .append($("<td>Text-4</td>"))
-     .append($("<td>Text-5</td>"))
-     .append($("<td>Text-6</td>"))
-     .append($("<td>Text-7</td>"));
- 
-  $("#myTable tbody").append(row);
-});
