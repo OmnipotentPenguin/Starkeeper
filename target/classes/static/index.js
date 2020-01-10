@@ -6,9 +6,16 @@ $(window).on("load resize ", function () {
   $('.tbl-header').css({ 'padding-right': scrollWidth });
 }).resize();
 
-function toggleFavCreate() {
+function toggleFavCreate(elID) {
 
-  let star = document.getElementById("favToggle");
+  let star = null;
+  if (elID == 'ca'){
+    star = document.getElementById("ca-favToggle");
+  } else if (elID == 'na'){
+    star = document.getElementById("na-favToggle");
+  } else {
+
+  }
 
   if (star.className === "glyphicon glyphicon-star-empty") {
     star.className = "glyphicon glyphicon-star";
@@ -19,28 +26,46 @@ function toggleFavCreate() {
 
 function articleFavourite(articleID){
 
-  console.log("favourite toggled")
-
   axios.patch("/toggleFavourite/" + articleID)
-    .then((response) => {
+    .then(() => {
+      window.location.reload();
     }).catch((error) => {
       console.error(error);
     });    
 }
 
-function articleEdit(articleID){
+var currentlyEditedArticle;
+function articleEdit(article){ 
 
+  $("#articles-page-content").hide();
+  $("#articles-edit-form").show();  
+
+  if(article != null){
+    
+    currentlyEditedArticle = article;
+
+    document.getElementById("na_name").value = article.name;
+    document.getElementById("na_description").innerHTML = article.description;
+    document.getElementById("na_source").value = article.source;
+    document.getElementById("na_rating").value = article.rating;
+    document.getElementById("na_url").value = article.url;
+  
+    if (article.favourite){
+
+      let star = document.getElementById("na-favToggle");
+
+      if (star.className === "glyphicon glyphicon-star-empty") {
+        star.className = "glyphicon glyphicon-star";
+      } else {
+        star.className = "glyphicon glyphicon-star-empty";
+      }
+    }
+  }  
 }
-
-function articleDelete(articleID){
-
-}
-
-var tagData = [];
 
 function submitArticle() {
 
-  let star = document.getElementById("favToggle");
+  let star = document.getElementById("ca-favToggle");
   let isFav = false;
 
   if (star.className === "glyphicon glyphicon-star-empty") {
@@ -50,6 +75,34 @@ function submitArticle() {
   }
 
   axios.post("/createArticle", {
+    name: document.getElementById("ca_name").value,
+    description: document.getElementById("ca_description").value,
+    source: document.getElementById("ca_source").value,
+    rating: document.getElementById("ca_rating").value,
+    url: document.getElementById("ca_url").value,
+    favourite: isFav
+  })
+    .then((response) => {
+      checkTags(response.data.id);
+      console.log(response.data);
+      document.location.href = "create_article.html";
+    }).catch((error) => {
+      console.error(error);
+    });
+}
+
+function submitArticleEdit(){
+
+  let star = document.getElementById("na-favToggle");
+  let isFav = false;
+
+  if (star.className === "glyphicon glyphicon-star-empty") {
+    isFav = false;
+  } else {
+    isFav = true;
+  }
+
+  axios.put("/updateArticle?id="+currentlyEditedArticle.id, {
     name: document.getElementById("na_name").value,
     description: document.getElementById("na_description").value,
     source: document.getElementById("na_source").value,
@@ -60,10 +113,27 @@ function submitArticle() {
     .then((response) => {
       checkTags(response.data.id);
       console.log(response.data);
-      document.location.href = "create_article.html";
+      window.location.reload();
     }).catch((error) => {
       console.error(error);
     });
+
+    // $("#edit-article-submit").click(function(){
+    //   $("#articles-page-content").show();
+    //   $("#articles-edit-form").hide();
+    // });
+
+}
+
+function articleDelete(articleID){
+
+  axios.delete("/deleteArticle/" + articleID)
+    .then((response) => {
+      window.location.reload();
+    }).catch((error) => {
+      console.error(error);
+    });
+
 }
 
 function checkTags(articleID) {
@@ -95,12 +165,24 @@ function insertNewRow(table, article) {
   let cell6 = row.insertCell(5);
   let cell7 = row.insertCell(6);
 
+  let cell8 = row.insertCell(7);
+
   cell1.innerHTML = article.id;
   cell2.innerHTML = article.name;
   cell3.innerHTML = article.description;
   cell4.innerHTML = article.source;
   cell5.innerHTML = article.rating;
-  cell6.innerHTML = article.url;
+
+  let linkurlref = document.createElement("a");
+  linkurlref.href = "https://"+article.url;
+  linkurlref.className = "link-item";
+  linkurlref.title = "https://"+article.url;
+
+  let linkurlicon = document.createElement("i");
+  linkurlicon.className = "glyphicon glyphicon-globe";
+  linkurlref.appendChild(linkurlicon);
+
+  cell6.appendChild(linkurlref);
 
   let favref = document.createElement("a");
   favref.onclick = function() {articleFavourite(article.id);};
@@ -112,7 +194,7 @@ function insertNewRow(table, article) {
   favref.appendChild(favicon);
 
   let editref = document.createElement("a");
-  editref.onclick = null //articleEdit(article.id);
+  editref.onclick = function() {articleEdit(article);};
   editref.className = "edit-item";
   editref.title = "Edit";
 
@@ -121,7 +203,7 @@ function insertNewRow(table, article) {
   editref.appendChild(editicon);
 
   let delref = document.createElement("a");
-  delref.onclick = null //articleDelete(article.id);
+  delref.onclick = function() {articleDelete(article.id);};
   delref.className = "delete-item";
   delref.title = "Delete";
 
@@ -133,34 +215,17 @@ function insertNewRow(table, article) {
   cell7.appendChild(editref);
   cell7.appendChild(delref);
 
-}
+  for (let tag of article.tagList){
+    cell8.innerHTML += (tag.name+" ");
+  }
 
-function articlePage() {
-
-  let table = document.getElementById("myTable tbody");
-
-  axios.get("/getArticle")
-    .then((response) => {
-      console.log(response.data);
-
-      let allArticles = response.data;
-
-      for (let article of allArticles) {
-
-        insertNewRow(table, article);
-
-      }
-
-    }).catch((error) => {
-      console.error(error);
-    });
 }
 
 function indexPage() {
 
   let table = document.getElementById("myFavouritesTable tbody");
 
-  axios.get("/getArticle")
+  axios.get("/getArticles")
     .then((response) => {
       console.log(response.data);
 
@@ -178,7 +243,7 @@ function indexPage() {
 
   let table2 = document.getElementById("myLatestTable tbody");
 
-  axios.get("/getArticle")
+  axios.get("/getArticles")
     .then((response) => {
       console.log(response.data);
 
@@ -204,11 +269,34 @@ function indexPage() {
 
 }
 
+function articlePage() {
+
+  $("#articles-edit-form").hide();
+
+  let table = document.getElementById("myTable tbody");
+
+  axios.get("/getArticles")
+    .then((response) => {
+      console.log(response.data);
+
+      let allArticles = response.data;
+
+      for (let article of allArticles) {
+
+        insertNewRow(table, article);
+
+      }
+
+    }).catch((error) => {
+      console.error(error);
+    });
+}
+
 function createArticlePage() {
 
   let newTagData = [];
 
-  axios.get("/getTag")
+  axios.get("/getTags")
     .then((response) => {
 
       let allTags = response.data;
@@ -224,12 +312,10 @@ function createArticlePage() {
         newTagData.push(newTag);
       }
 
-      tagData = newTagData;
-
       $('.js-example-basic-multiple').select2({
         width: '100%',
         tags: true,
-        data: tagData,
+        data: newTagData,
         placeholder: "  Input a tag then press Enter",
         allowClear: true
       });
@@ -239,4 +325,6 @@ function createArticlePage() {
     });
 
 }
+
+
 

@@ -26,7 +26,7 @@ public class ArticleTagController {
 		this.service = service;
 	}
 	
-	@GetMapping("/getTag")
+	@GetMapping("/getTags")
 	public List<ArticleTag> getArticleTags(){
 		return service.getArticleTags();		
 	}

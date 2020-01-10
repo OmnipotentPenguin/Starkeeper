@@ -54,7 +54,7 @@
                 <p>
                     <section>
                         <h1>StarKeeper</h1>
-
+                    <div id = "articles-page-content">
                         <div class="tbl-header">
                             <table cellpadding="0" cellspacing="0" border="0">
                                 <thead>
@@ -83,6 +83,78 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div id = "articles-edit-form">
+
+                        <div class="tbl-header">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Edit Article</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="tbl-content2">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i
+                                                class="glyphicon glyphicon-pencil"></i></span>
+                                        <input id="na_name" name="article_name" placeholder="Article Name"
+                                            class="form-control" type="text">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i
+                                                class="glyphicon glyphicon-pencil"></i></span>
+                                        <textarea id="na_description" name="comment" placeholder="Project Description"
+                                            class="form-control"></textarea>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+                                        <input id="na_source" name="article_source" placeholder="Article Source"
+                                            class="form-control" type="text">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                                        <input id="na_url" name="website" placeholder="Website URL" class="form-control"
+                                            type="url">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i
+                                                class="glyphicon glyphicon-star-empty"></i></span>
+                                        <input id="na_rating" name="rating" placeholder="Rating" class="form-control"
+                                            type="number" min="1" max="5">
+                                    </div>
+
+                                    <div class="input-group" class="_box">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-tags"></i></span>
+
+                                        <select class="js-example-basic-multiple input-group-addon" name="tags[]"
+                                            multiple="multiple" id="tagList"></select>
+
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i id="na-favToggle"
+                                                class="glyphicon glyphicon-star-empty"
+                                                onclick="toggleFavCreate('na');"></i></span>
+                                        <input name="favourite" class="form-control" type="hidden">
+                                    </div>
+
+                                    <button onclick="submitArticleEdit();" id="edit-article-submit">Submit</button>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
 
                 </p>
             </div>

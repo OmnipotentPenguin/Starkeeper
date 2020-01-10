@@ -28,9 +28,14 @@ public class ArticleController {
 		this.service = service;
 	}
 	
-	@GetMapping("/getArticle")
+	@GetMapping("/getArticles")
 	public List<Article> getArticles(){
 		return service.getArticles();		
+	}
+	
+	@GetMapping("/getArticle/{id}")
+	public Article getArticle(@PathVariable Long id){
+		return service.findArticleByID(id);
 	}
 	
 	@PostMapping("/createArticle")

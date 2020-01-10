@@ -26,7 +26,12 @@ public class ArticleService {
 	public Article updateArticle(Article article, Long id) {
 		Article toUpdate = repo.getOne(id);
 		toUpdate.setName(article.getName());
-		toUpdate.setUrl(article.getUrl());		
+		toUpdate.setDescription(article.getDescription());
+		toUpdate.setSource(article.getSource());		
+		toUpdate.setUrl(article.getUrl());
+		toUpdate.setRating(article.getRating());
+		toUpdate.setTagList(article.getTagList());
+		toUpdate.setFavourite(article.getFavourite());
 		return repo.save(toUpdate);		
 	}
 	
