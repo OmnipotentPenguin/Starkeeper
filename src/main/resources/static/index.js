@@ -44,12 +44,12 @@ function articleEdit(article){
 
     let pageID;
 
-    if (window.location.href === "http://localhost:8080/index.html"){
+    if (document.location.href.includes("index.html")){
       pageID = "ia";
-    } else if (window.location.href === "http://localhost:8080/articles.html"){
+    } else if (document.location.href.includes("articles.html")){
       pageID = "na";
     } else {
-
+      pageID;
     }
     
     currentlyEditedArticle = article;
@@ -72,21 +72,35 @@ function articleEdit(article){
     }
 
     let newTagData = [];
+    let activeTagData = [];
 
     axios.get("/getTags")
       .then((response) => {
   
         let allTags = response.data;
-  
-        for (let tag of allTags) {
-  
-          let newTag =
-          {
-            "id": parseInt(tag.id),
-            "text": tag.name
+
+        for (let articleTag of article.tagList){
+
+          let activeTag = {
+            id: articleTag.id,
+            text: articleTag.name
           };
+
+          activeTagData.push(activeTag);
+        
+          var newOption = new Option(activeTag.text, activeTag.id, true, true);
+          $('.js-example-basic-multiple').append(newOption).trigger('change');
+        }
   
-          newTagData.push(newTag);
+        for (let tag of allTags) { 
+          
+          if (!(activeTagData.includes(tag.id))){
+            let newTag = {
+              id: tag.id,
+              text: tag.name
+            };
+            newTagData.push(newTag);
+          }
         }
   
         $('.js-example-basic-multiple').select2({
@@ -96,6 +110,8 @@ function articleEdit(article){
           placeholder: "  Input a tag then press Enter",
           allowClear: true
         });
+
+
   
       }).catch((error) => {
         console.error(error);
@@ -199,8 +215,6 @@ function insertNewRow(table, article) {
   let cell6 = row.insertCell(5);
   let cell7 = row.insertCell(6);
 
-  let cell8 = row.insertCell(7);
-
   cell1.innerHTML = article.id;
   cell2.innerHTML = article.name;
   cell3.innerHTML = article.description;
@@ -249,9 +263,12 @@ function insertNewRow(table, article) {
   cell7.appendChild(editref);
   cell7.appendChild(delref);
 
+  row.setAttribute("data-toggle", "tooltip");
+  row.setAttribute("data-placement", "bottom");
   for (let tag of article.tagList){
-    cell8.innerHTML += (tag.name+" ");
+    row.title += (" - "+tag.name+" - ");
   }
+  $(row).tooltip();
 
 }
 
@@ -288,14 +305,14 @@ function indexPage() {
 
       for (let i = 0; i < allArticles.length; i++) {
 
-        if (allArticles.length > 6) {
-          let j = allArticles.length - (6 - i);
+        if (allArticles.length > 5) {
+          let j = allArticles.length - (5 - i);
           insertNewRow(table2, allArticles[j]);
         } else {
           insertNewRow(table2, allArticles[i])
         }
 
-        if (i > 6) {
+        if (i > 5) {
           break;
         }
       }
