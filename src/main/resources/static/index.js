@@ -70,6 +70,36 @@ function articleEdit(article){
         star.className = "glyphicon glyphicon-star-empty";
       }
     }
+
+    let newTagData = [];
+
+    axios.get("/getTags")
+      .then((response) => {
+  
+        let allTags = response.data;
+  
+        for (let tag of allTags) {
+  
+          let newTag =
+          {
+            "id": parseInt(tag.id),
+            "text": tag.name
+          };
+  
+          newTagData.push(newTag);
+        }
+  
+        $('.js-example-basic-multiple').select2({
+          width: '100%',
+          tags: true,
+          data: newTagData,
+          placeholder: "  Input a tag then press Enter",
+          allowClear: true
+        });
+  
+      }).catch((error) => {
+        console.error(error);
+      });
   }  
 }
 
