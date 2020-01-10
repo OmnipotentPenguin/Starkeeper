@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import main.repository.ArticleRepository;
 import main.repository.entities.Article;
+import main.repository.entities.ArticleTag;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -42,12 +43,16 @@ public class ArticleRestTests {
 
 	private Article testArticleWithID;
 	
+	private List<ArticleTag> testTagList;
+	
 
 	@Before
 	public void init() {
 		this.repo.deleteAll();
+		
+		this.testTagList = new ArrayList<ArticleTag>();
 
-		this.testArticle = new Article("Fusion", "www.url.com");
+		this.testArticle = new Article("Fusion", "www.url.com", testTagList);
 		this.testArticleWithID = this.repo.save(this.testArticle);
 		this.id = this.testArticleWithID.getId();
 	}
@@ -72,13 +77,10 @@ public class ArticleRestTests {
 		List<Article> articleList = new ArrayList<>();
 		articleList.add(this.testArticleWithID);
 
-		String content = this.mock.perform(request(HttpMethod.GET, "/getArticle").accept(MediaType.APPLICATION_JSON))
+		String content = this.mock.perform(request(HttpMethod.GET, "/getArticles").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 
 		assertEquals(this.mapper.writeValueAsString(articleList), content);
-		
-		
-		//Returning tagArray as null, expecting tag array as []
 	}
 
 	@Test
@@ -93,8 +95,6 @@ public class ArticleRestTests {
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		
 		assertEquals(this.mapper.writeValueAsString(updatedArticle), result);
-		
-		//Returning tagArray as null, expecting tag array as []
 	}
 
 }

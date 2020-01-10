@@ -41,6 +41,12 @@ public class Article {
 		this.name = name;
 		this.url = url;
 	}
+	
+	public Article(String name,String url,List<ArticleTag> articleTags) {
+		this.name = name;
+		this.url = url;
+		this.articleTags = articleTags;
+	}
 
 	public long getId() {
 		return id;

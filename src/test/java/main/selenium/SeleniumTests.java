@@ -20,7 +20,7 @@ public class SeleniumTests {
 	public void tearDown() {
 		driver.quit();
 	}
-	
+	/*
 	@Test
 	public void testSeleniumExample() throws InterruptedException {
 		setup();
@@ -32,4 +32,5 @@ public class SeleniumTests {
 		
 		tearDown();
 	}
+	*/
 }

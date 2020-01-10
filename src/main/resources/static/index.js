@@ -14,7 +14,7 @@ function toggleFavCreate(elID) {
   } else if (elID == 'na'){
     star = document.getElementById("na-favToggle");
   } else {
-
+    star = document.getElementById("ia-favToggle");
   }
 
   if (star.className === "glyphicon glyphicon-star-empty") {
@@ -37,22 +37,32 @@ function articleFavourite(articleID){
 var currentlyEditedArticle;
 function articleEdit(article){ 
 
-  $("#articles-page-content").hide();
-  $("#articles-edit-form").show();  
+  $(".page-content").hide();
+  $(".edit-form").show();  
 
   if(article != null){
+
+    let pageID;
+
+    if (window.location.href === "http://localhost:8080/index.html"){
+      pageID = "ia";
+    } else if (window.location.href === "http://localhost:8080/articles.html"){
+      pageID = "na";
+    } else {
+
+    }
     
     currentlyEditedArticle = article;
 
-    document.getElementById("na_name").value = article.name;
-    document.getElementById("na_description").innerHTML = article.description;
-    document.getElementById("na_source").value = article.source;
-    document.getElementById("na_rating").value = article.rating;
-    document.getElementById("na_url").value = article.url;
+    document.getElementById(pageID+"_name").value = article.name;
+    document.getElementById(pageID+"_description").innerHTML = article.description;
+    document.getElementById(pageID+"_source").value = article.source;
+    document.getElementById(pageID+"_rating").value = article.rating;
+    document.getElementById(pageID+"_url").value = article.url;
   
     if (article.favourite){
 
-      let star = document.getElementById("na-favToggle");
+      let star = document.getElementById(pageID+"-favToggle");
 
       if (star.className === "glyphicon glyphicon-star-empty") {
         star.className = "glyphicon glyphicon-star";
@@ -91,10 +101,10 @@ function submitArticle() {
     });
 }
 
-function submitArticleEdit(){
+function submitArticleEdit(editID){
 
-  let star = document.getElementById("na-favToggle");
-  let isFav = false;
+  let star = document.getElementById(editID+"-favToggle");
+  let isFav = false;  
 
   if (star.className === "glyphicon glyphicon-star-empty") {
     isFav = false;
@@ -103,11 +113,11 @@ function submitArticleEdit(){
   }
 
   axios.put("/updateArticle?id="+currentlyEditedArticle.id, {
-    name: document.getElementById("na_name").value,
-    description: document.getElementById("na_description").value,
-    source: document.getElementById("na_source").value,
-    rating: document.getElementById("na_rating").value,
-    url: document.getElementById("na_url").value,
+    name: document.getElementById(editID+"_name").value,
+    description: document.getElementById(editID+"_description").value,
+    source: document.getElementById(editID+"_source").value,
+    rating: document.getElementById(editID+"_rating").value,
+    url: document.getElementById(editID+"_url").value,
     favourite: isFav
   })
     .then((response) => {
@@ -117,12 +127,6 @@ function submitArticleEdit(){
     }).catch((error) => {
       console.error(error);
     });
-
-    // $("#edit-article-submit").click(function(){
-    //   $("#articles-page-content").show();
-    //   $("#articles-edit-form").hide();
-    // });
-
 }
 
 function articleDelete(articleID){
@@ -223,6 +227,9 @@ function insertNewRow(table, article) {
 
 function indexPage() {
 
+  $(".page-content").show();
+  $(".edit-form").hide();
+
   let table = document.getElementById("myFavouritesTable tbody");
 
   axios.get("/getArticles")
@@ -271,7 +278,8 @@ function indexPage() {
 
 function articlePage() {
 
-  $("#articles-edit-form").hide();
+  $(".page-content").show();
+  $(".edit-form").hide();
 
   let table = document.getElementById("myTable tbody");
 
