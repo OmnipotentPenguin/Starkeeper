@@ -1,5 +1,7 @@
 "use strict";
 
+const url = "/StarKeeper"
+
 // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
 $(window).on("load resize ", function () {
   var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
@@ -26,7 +28,7 @@ function toggleFavCreate(elID) {
 
 function articleFavourite(articleID){
 
-  axios.patch("/toggleFavourite/" + articleID)
+  axios.patch(url+"/toggleFavourite/" + articleID)
     .then(() => {
       window.location.reload();
     }).catch((error) => {
@@ -74,7 +76,7 @@ function articleEdit(article){
     let newTagData = [];
     let activeTagData = [];
 
-    axios.get("/getTags")
+    axios.get(url+"/getTags")
       .then((response) => {
   
         let allTags = response.data;
@@ -130,7 +132,7 @@ function submitArticle() {
     isFav = true;
   }
 
-  axios.post("/createArticle", {
+  axios.post(url+"/createArticle", {
     name: document.getElementById("ca_name").value,
     description: document.getElementById("ca_description").value,
     source: document.getElementById("ca_source").value,
@@ -158,7 +160,7 @@ function submitArticleEdit(editID){
     isFav = true;
   }
 
-  axios.put("/updateArticle?id="+currentlyEditedArticle.id, {
+  axios.put(url+"/updateArticle?id="+currentlyEditedArticle.id, {
     name: document.getElementById(editID+"_name").value,
     description: document.getElementById(editID+"_description").value,
     source: document.getElementById(editID+"_source").value,
@@ -177,7 +179,7 @@ function submitArticleEdit(editID){
 
 function articleDelete(articleID){
 
-  axios.delete("/deleteArticle/" + articleID)
+  axios.delete(url+"/deleteArticle/" + articleID)
     .then((response) => {
       window.location.reload();
     }).catch((error) => {
@@ -192,7 +194,7 @@ function checkTags(articleID) {
 
   for (let i = 0; i < chosenTags.length; ++i) {
     let tag = chosenTags[i].title;
-    axios.patch(("/addTag/" + articleID), {
+    axios.patch((url+"/addTag/" + articleID), {
       name: tag
     })
       .then((response) => {
@@ -279,7 +281,7 @@ function indexPage() {
 
   let table = document.getElementById("myFavouritesTable tbody");
 
-  axios.get("/getArticles")
+  axios.get(url+"/getArticles")
     .then((response) => {
       console.log(response.data);
 
@@ -297,7 +299,7 @@ function indexPage() {
 
   let table2 = document.getElementById("myLatestTable tbody");
 
-  axios.get("/getArticles")
+  axios.get(url+"/getArticles")
     .then((response) => {
       console.log(response.data);
 
@@ -330,7 +332,7 @@ function articlePage() {
 
   let table = document.getElementById("myTable tbody");
 
-  axios.get("/getArticles")
+  axios.get(url+"/getArticles")
     .then((response) => {
       console.log(response.data);
 
@@ -351,7 +353,7 @@ function createArticlePage() {
 
   let newTagData = [];
 
-  axios.get("/getTags")
+  axios.get(url+"/getTags")
     .then((response) => {
 
       let allTags = response.data;
