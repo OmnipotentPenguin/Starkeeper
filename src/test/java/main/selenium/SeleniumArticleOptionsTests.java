@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import main.pom.StarKeeperPOM;
 
@@ -20,6 +21,11 @@ public class SeleniumArticleOptionsTests {
 	@Before
 	public void setup() {
 		System.setProperty("webdriver.chrome.driver", "chromedriver");
+		
+		ChromeOptions options = new ChromeOptions();
+		options.setExperimentalOption("useAutomationExtension", false);
+		WebDriver driver = new ChromeDriver(options);
+		
 		this.driver = new ChromeDriver();
 		this.driver.manage().window().fullscreen();
 	}
