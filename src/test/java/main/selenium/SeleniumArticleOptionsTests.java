@@ -24,6 +24,10 @@ public class SeleniumArticleOptionsTests {
 		
 		ChromeOptions options = new ChromeOptions();
 		options.setExperimentalOption("useAutomationExtension", false);
+		options.setExperimentalOption("--headless", true);
+		options.setExperimentalOption("--no-sandbox", true);
+		options.setExperimentalOption("--disable-dev-shm-usage", true);
+		
 		WebDriver driver = new ChromeDriver(options);
 		
 		this.driver = new ChromeDriver();
