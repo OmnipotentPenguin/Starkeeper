@@ -50,7 +50,7 @@ public class ArticleController {
 	
 	@DeleteMapping("/deleteArticle/{id}")
 	public void deleteArticle(@PathVariable Long id) {
-		this.service.deleteArticle(id);		
+		this.service.deleteArticle(id);
 	}
 	
 	@PatchMapping("/addTag/{id}")

@@ -45,7 +45,6 @@ public class ArticleRestTests {
 	
 	private List<ArticleTag> testTagList;
 	
-
 	@Before
 	public void init() {
 		this.repo.deleteAll();
