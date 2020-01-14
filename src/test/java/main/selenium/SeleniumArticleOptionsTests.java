@@ -25,6 +25,7 @@ public class SeleniumArticleOptionsTests {
 		ChromeOptions opt = new ChromeOptions();
 		opt.setHeadless(true);
 		this.driver = new ChromeDriver(opt);
+		
 		this.driver.manage().window().fullscreen();
 	}
 	@After

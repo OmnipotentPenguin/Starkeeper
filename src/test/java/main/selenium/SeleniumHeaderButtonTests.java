@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.junit.Test;
 
 import main.pom.StarKeeperPOM;
@@ -18,7 +19,11 @@ public class SeleniumHeaderButtonTests {
 	@Before
 	public void setup() {
 		System.setProperty("webdriver.chrome.driver", "chromedriver");
-		this.driver = new ChromeDriver();
+		
+		ChromeOptions opt = new ChromeOptions();
+		opt.setHeadless(true);
+		this.driver = new ChromeDriver(opt);
+		
 		this.driver.manage().window().fullscreen();
 	}
 	@After
