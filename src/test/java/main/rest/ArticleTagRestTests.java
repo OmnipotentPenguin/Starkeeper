@@ -21,7 +21,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import main.repository.ArticleTagRepository;
-import main.repository.entities.Article;
 import main.repository.entities.ArticleTag;
 
 @RunWith(SpringRunner.class)
@@ -71,7 +70,7 @@ public class ArticleTagRestTests {
 		List<ArticleTag> articleTagList = new ArrayList<>();
 		articleTagList.add(this.testArticleTagWithID);
 
-		String content = this.mock.perform(request(HttpMethod.GET, "/getTag").accept(MediaType.APPLICATION_JSON))
+		String content = this.mock.perform(request(HttpMethod.GET, "/getTags").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 
 		assertEquals(this.mapper.writeValueAsString(articleTagList), content);

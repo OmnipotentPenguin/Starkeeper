@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import main.exceptions.TagNotFoundException;
 import main.repository.ArticleTagRepository;
 import main.repository.entities.ArticleTag;
 
@@ -15,7 +16,12 @@ public class ArticleTagService {
 	private ArticleTagRepository repo;
 	
 	public ArticleTag createArticleTag(ArticleTag newTag) {
-		return repo.save(newTag);		
+		if (repo.existsTagByName(newTag.getName())) {
+			return getArticleTag(newTag.getName());			 
+		}
+		else {
+			return repo.save(newTag);	
+		}	
 	}	
 	
 	public ArticleTag updateArticleTag(ArticleTag tag, Long id) {
@@ -27,6 +33,14 @@ public class ArticleTagService {
 	public String deleteArticleTag(Long id) {
 		repo.deleteById(id);
 		return "Tag Deleted";
+	}
+	
+	public ArticleTag getArticleTag(Long id) {
+		return this.repo.findById(id).orElseThrow(() -> new TagNotFoundException());
+	}
+	
+	public ArticleTag getArticleTag(String name) {
+		return this.repo.findTagByName(name).orElseThrow(() -> new TagNotFoundException());
 	}
 	
 	public List<ArticleTag> getArticleTags() {

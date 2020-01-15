@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,6 +14,7 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import main.repository.entities.Article;
+import main.repository.entities.ArticleTag;
 import main.rest.ArticleController;
 import main.service.ArticleService;
 
@@ -24,21 +26,32 @@ public class ArticleServiceTests {
 
 	@Mock
 	private ArticleService service;
+	
+	private Article testArticle;
+	private ArticleTag testTag;
+	
+	private List<ArticleTag> testTagList;
+	
+	@Before
+	public void init() {		
+		this.testTagList = new ArrayList<ArticleTag>();
+		this.testTag = new ArticleTag("tag_name");
+		testTagList.add(testTag);
+		this.testArticle = new Article("Fusion", "www.url.com", testTagList);
+	}
 
 	@Test
 	public void createArticleTest() {
-		Article testArticle = new Article("article_name", "www.url.com");
 		Mockito.when(service.createArticle(testArticle)).thenReturn(testArticle);
-		assertTrue("Article has not been created", service.createArticle(testArticle).getName().equals("article_name"));
+		assertTrue("Article has not been created", service.createArticle(testArticle).getName().equals("Fusion"));
 		Mockito.verify(service).createArticle(testArticle);
 	}
 
 	@Test
 	public void updateArticleTest() {
-		Article newArticle = new Article("article_replacement", "www.url2.com");
-		Mockito.when(service.updateArticle(newArticle, 1L)).thenReturn(newArticle);
-		assertTrue("Article has not been updated", service.updateArticle(newArticle, 1L).getName().equals("article_replacement"));
-		Mockito.verify(service).updateArticle(newArticle, 1L);
+		Mockito.when(service.updateArticle(testArticle, 1L)).thenReturn(testArticle);
+		assertTrue("Article has not been updated", service.updateArticle(testArticle, 1L).getName().equals("Fusion"));
+		Mockito.verify(service).updateArticle(testArticle, 1L);
 	}
 
 	@Test
@@ -55,6 +68,13 @@ public class ArticleServiceTests {
 		Mockito.when(service.getArticles()).thenReturn(articles);
 		assertTrue("Returned no articles", service.getArticles().size() > 0);
 		Mockito.verify(service).getArticles();
+	}
+	
+	@Test
+	public void addTagToArticleTest() {
+		Mockito.when(service.addTagToArticle(testArticle.getId(),testTag)).thenReturn(testArticle);
+		assertTrue("Tag has not been added", service.addTagToArticle(testArticle.getId(),testTag).getName().equals("Fusion"));
+		Mockito.verify(service).addTagToArticle(testArticle.getId(),testTag);
 	}
 
 }
