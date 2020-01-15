@@ -1,1 +1,104 @@
-StarKeeper Project
+# StarKeeper Project
+
+Project One for QA, completed on the 17th Jan 2020
+
+## Index
+[Brief](#brief)
+   * [Solution](#solution)
+   
+[Architecture](#architecture)
+   * [Entity Relationship Diagrams](#erd)
+	
+[Testing](#testing)
+     
+[Deployment](#depl)
+   * [Technologies Used](#tech)
+     
+[Front End Design](#FE)
+
+[Improvements for the Future](#improve)
+
+[Authors](#auth)
+
+<a name="brief"></a>
+## The Brief
+
+To create an OOP-based application with utilisation of supporting tools, methodologies and technologies that encapsulate all core modules covered during training. The application must manipulate two tables with full CRUD functionality.
+
+<a name="solution"></a>
+### Solution
+
+The solution was an Article Storage tool, dubbed StarKeeper, that allows a user to store sets of data pertaining to a web link in a table, with each data set tied to a series of tags that would summarize the contained information.
+
+This requires two tables (an article table and a tag table) tied together by a many-to-many relationship, where each article can have multiple tags, and each tag can be assigned to multiple articles.
+
+<a name="architecture"></a>
+## Architecture
+<a name="erd"></a>
+### Entity Relationship Diagrams
+#### Initial plan
+![Initial ERD](/Documentation/Starkeeper_ERD.png)
+
+The initial ERD consisted of 5 tables due to the inclusion of user data, which was later removed from the application due to feature proirity. This was refined into 3 tables as seen below
+
+#### Delivered solution
+![Final ERD](/Documentation/Starkeeper_ERD_Simple.png)
+
+In addition to the removal of the user table, the final ERD had many of the article values stripped away. This was done to simplify interactions with the user and minimize superfluous entries to each article. Instead, greater focus could be placed on the tag inputs to provide additional information.
+
+<a name="testing"></a>
+## Testing
+
+JUnit, Mockito and Selenium were used for automated testing, with test coverage for the backend at 90.8%. SonarQube was used for static reporting and refactoring.
+
+[Link to Final Surefire Report](/Documentation/surefire_report.pdf)
+
+<a name="depl"></a>
+## Deployment
+
+The build, test and deployment process was automated using Jenkins, with a webhook to GitHub which was triggered with every push event
+
+This application can be deployed both locally and externally through a virtual machine. The index.js file has a url variable to adjust the ip address.
+
+![Deployment Pipeline](/Documentation/ci-pipeline.jpg)
+<a name="tech"></a>
+### Technologies Used
+
+* H2 Database Engine - Database
+* Java/Eclipse - Back-End
+* Visual Studio Code - Front-End
+* Maven - Dependency Management
+* [Git](https://github.com/OmnipotentPenguin/Starkeeper) - VCS
+* [Trello](https://trello.com/b/4hNrMAWC/star-keeper-development) - Project Tracking
+* Jenkins - CI Server
+* Tomcat - Deployment
+* Surefire - Test Reporting
+* SonarQube - Static Testing
+* AWS - Live Environment
+
+<a name="FE"></a>
+## Front End Design
+### Wireframes
+Home Page
+![HomePage Wireframe](/Documentation/Homepage.png)
+New Article Page
+![NewArticle Wireframe](/Documentation/Newarticle.png)
+
+### Final Appearance
+Home Page
+![HomePage Wireframe](/Documentation/HomepageFinal.png)
+New Article Page
+![NewArticle Wireframe](/Documentation/NewarticleFinal.png)
+
+<a name="improve"></a>
+## Improvements for the Future
+
+Current functionality for StarKeeper becomes quite limited when the number of articles increase beyond the size of the webpage. In future iterations, I'd like to begin the development for the search and filtering functionality that was considered at the start of the project, potentially searching through name and description or including an additional tag drop-down list that filters results based on the selected tags.
+
+Beyond that, I would like to revisit the idea of multiple user accounts, each with a personal list of tags and articles, which interaction between user accounts over the homepage (such as trending articles) or a shared rating system for each article.
+
+<a name="auth"></a>
+## Authors
+
+Adam Martin
+
