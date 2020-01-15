@@ -51,7 +51,7 @@ In addition to the removal of the user table, the final ERD had many of the arti
 
 JUnit, Mockito and Selenium were used for automated testing, with test coverage for the backend at 90.8%. SonarQube was used for static reporting and refactoring.
 
-[Link to Final Surefire Report](/Documentation/surefire_report.pdf)
+[Link to Final Surefire Report](/Documentation/surefire-report.pdf)
 
 <a name="depl"></a>
 ## Deployment
@@ -60,7 +60,7 @@ The build, test and deployment process was automated using Jenkins, with a webho
 
 This application can be deployed both locally and externally through a virtual machine. The index.js file has a url variable to adjust the ip address.
 
-![Deployment Pipeline](/Documentation/ci-pipeline.jpg)
+![Deployment Pipeline](/Documentation/ci-pipeline.png)
 <a name="tech"></a>
 ### Technologies Used
 
@@ -79,15 +79,11 @@ This application can be deployed both locally and externally through a virtual m
 <a name="FE"></a>
 ## Front End Design
 ### Wireframes
-Home Page
 ![HomePage Wireframe](/Documentation/Homepage.png)
-New Article Page
 ![NewArticle Wireframe](/Documentation/Newarticle.png)
 
 ### Final Appearance
-Home Page
 ![HomePage Wireframe](/Documentation/HomepageFinal.png)
-New Article Page
 ![NewArticle Wireframe](/Documentation/NewarticleFinal.png)
 
 <a name="improve"></a>
