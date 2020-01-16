@@ -45,7 +45,7 @@ public class ArticleService {
 	}
 	
 	public Article findArticleByID(Long id) {
-		return this.repo.findById(id).orElseThrow(() -> new ArticleNotFoundException());
+		return this.repo.findById(id).orElseThrow(ArticleNotFoundException::new);
 	}
 
 	public Article addTagToArticle(Long id, ArticleTag tag) {
