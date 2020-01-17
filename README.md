@@ -49,6 +49,11 @@ An additional joining table was tied between the article and tag tables, which w
 
 Wireframes, built off of the ERD's and taking into account acceptance criteria, were developed to better visualise the interactions a user may have with the product.
 
+#### API Development
+![API Development Diagram](/Documentation/API_Development_Diagram.png)
+
+A simple API Development Diagram developed to visualise the back-end functions of the application.
+
 <a name="outcome"></a>
 ### Delivered solution
 #### Entity Relationship Diagram - Final
