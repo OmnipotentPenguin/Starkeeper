@@ -81,6 +81,14 @@ public class ArticleRestTests {
 
 		assertEquals(this.mapper.writeValueAsString(articleList), content);
 	}
+	
+	@Test
+	public void testGetArticle() throws Exception {
+		String content = this.mock.perform(request(HttpMethod.GET, "/getArticle/"+this.id))
+				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+		
+		assertEquals(this.mapper.writeValueAsString(testArticleWithID), content);
+	}
 
 	@Test
 	public void testUpdateArticle() throws Exception {
@@ -95,5 +103,16 @@ public class ArticleRestTests {
 		
 		assertEquals(this.mapper.writeValueAsString(updatedArticle), result);
 	}
-
+	
+	@Test
+	public void testToggleFavourite() throws Exception {		
+		testArticle.setFavourite(true);
+		
+		String result = this.mock
+				.perform(request(HttpMethod.PATCH, "/toggleFavourite/" + this.id).accept(MediaType.APPLICATION_JSON)
+						.contentType(MediaType.APPLICATION_JSON).content(this.mapper.writeValueAsString(testArticle)))
+				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+		
+		assertEquals(this.mapper.writeValueAsString(testArticle), result);
+	}
 }

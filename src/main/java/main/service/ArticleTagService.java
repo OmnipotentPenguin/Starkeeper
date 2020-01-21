@@ -23,7 +23,7 @@ public class ArticleTagService {
 			return repo.save(newTag);	
 		}	
 	}	
-	
+
 	public ArticleTag updateArticleTag(ArticleTag tag, Long id) {
 		ArticleTag toUpdate = repo.getOne(id);
 		toUpdate.setName(tag.getName());		
@@ -36,11 +36,11 @@ public class ArticleTagService {
 	}
 	
 	public ArticleTag getArticleTag(Long id) {
-		return this.repo.findById(id).orElseThrow(() -> new TagNotFoundException());
+		return this.repo.findById(id).orElseThrow(TagNotFoundException::new);
 	}
 	
 	public ArticleTag getArticleTag(String name) {
-		return this.repo.findTagByName(name).orElseThrow(() -> new TagNotFoundException());
+		return this.repo.findTagByName(name).orElseThrow(TagNotFoundException::new);
 	}
 	
 	public List<ArticleTag> getArticleTags() {
