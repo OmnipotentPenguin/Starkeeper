@@ -1,0 +1,12 @@
+/home/qa-admin/git/Starkeeper/src/main/java/main/config/AppConfig.java
+/home/qa-admin/git/Starkeeper/src/main/java/main/repository/entities/ArticleTag.java
+/home/qa-admin/git/Starkeeper/src/main/java/main/App.java
+/home/qa-admin/git/Starkeeper/src/main/java/main/rest/ArticleTagController.java
+/home/qa-admin/git/Starkeeper/src/main/java/main/exceptions/TagNotFoundException.java
+/home/qa-admin/git/Starkeeper/src/main/java/main/repository/entities/Article.java
+/home/qa-admin/git/Starkeeper/src/main/java/main/service/ArticleService.java
+/home/qa-admin/git/Starkeeper/src/main/java/main/rest/ArticleController.java
+/home/qa-admin/git/Starkeeper/src/main/java/main/service/ArticleTagService.java
+/home/qa-admin/git/Starkeeper/src/main/java/main/exceptions/ArticleNotFoundException.java
+/home/qa-admin/git/Starkeeper/src/main/java/main/repository/ArticleTagRepository.java
+/home/qa-admin/git/Starkeeper/src/main/java/main/repository/ArticleRepository.java

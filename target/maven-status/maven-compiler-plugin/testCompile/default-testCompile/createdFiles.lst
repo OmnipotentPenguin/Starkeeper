@@ -1,0 +1,9 @@
+main/selenium/SeleniumArticleOptionsTests.class
+main/selenium/SeleniumHeaderButtonTests.class
+main/pom/StarKeeperPOM.class
+main/service/ArticleServiceTests.class
+main/repository/ArticleRepositoryTests.class
+main/repository/ArticleTagRepositoryTests.class
+main/service/ArticleTagServiceTests.class
+main/rest/ArticleRestTests.class
+main/rest/ArticleTagRestTests.class
