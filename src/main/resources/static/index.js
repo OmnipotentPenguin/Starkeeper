@@ -1,6 +1,6 @@
 "use strict";
 
-const url = "http://35.177.66.72:8080/StarKeeper"
+const url = "/StarKeeper"
 
 // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
 $(window).on("load resize ", function () {
