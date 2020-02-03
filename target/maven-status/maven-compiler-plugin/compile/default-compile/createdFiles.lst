@@ -1,0 +1,12 @@
+main/repository/entities/ArticleTag.class
+main/service/ArticleTagService.class
+main/App.class
+main/repository/ArticleTagRepository.class
+main/repository/ArticleRepository.class
+main/rest/ArticleController.class
+main/repository/entities/Article.class
+main/exceptions/TagNotFoundException.class
+main/rest/ArticleTagController.class
+main/service/ArticleService.class
+main/config/AppConfig.class
+main/exceptions/ArticleNotFoundException.class
