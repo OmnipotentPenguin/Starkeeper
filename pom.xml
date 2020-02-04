@@ -19,11 +19,11 @@
 	</properties>
 	
 	<distributionManagement>
-		<repository>
+	<!--	<repository>
             		<id>nexus</id>
             		<name>maven-releases</name>
        			<url>http://3.11.84.155:8081/repository/pipeline-repository-proxy/</url>
-	        </repository>
+	        </repository>	-->
 		<snapshotRepository>
             		<id>nexus</id>
             		<name>maven-snapshots</name>
