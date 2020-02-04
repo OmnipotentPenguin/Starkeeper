@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class StarKeeperPOM {
 	
-	public String skHome = "http://localhost:8080/StarKeeper/index.html";
+	public String skHome = "http://localhost/StarKeeper/index.html";
 	public String skArticles = "http://localhost:8080/StarKeeper/articles.html";
 	public String skNewArticle = "http://localhost:8080/StarKeeper/create_article.html";
 	

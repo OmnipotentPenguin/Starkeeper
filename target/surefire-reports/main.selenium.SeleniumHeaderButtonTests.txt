@@ -1,0 +1,121 @@
+-------------------------------------------------------------------------------
+Test set: main.selenium.SeleniumHeaderButtonTests
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 0, Errors: 9, Skipped: 0, Time elapsed: 5.959 s <<< FAILURE! - in main.selenium.SeleniumHeaderButtonTests
+main.selenium.SeleniumHeaderButtonTests.testHomeToArticlesButton  Time elapsed: 1.051 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/nav/div/div[2]/ul[1]/li[2]/a"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.qdWiaH}, goog:chromeOptions: {debuggerAddress: localhost:46687}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 94dcd64793e313f2d92abfb0738134f4
+*** Element info: {Using=xpath, value=/html/body/nav/div/div[2]/ul[1]/li[2]/a}
+	at main.selenium.SeleniumHeaderButtonTests.testHomeToArticlesButton(SeleniumHeaderButtonTests.java:44)
+
+main.selenium.SeleniumHeaderButtonTests.testNewArticleToNewArticle  Time elapsed: 0.599 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/nav/div/div[2]/ul[2]/li/a"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.fXBNko}, goog:chromeOptions: {debuggerAddress: localhost:41105}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 5d5639e49d499581b580f404f392122c
+*** Element info: {Using=xpath, value=/html/body/nav/div/div[2]/ul[2]/li/a}
+	at main.selenium.SeleniumHeaderButtonTests.testNewArticleToNewArticle(SeleniumHeaderButtonTests.java:93)
+
+main.selenium.SeleniumHeaderButtonTests.testArticlesToNewArticle  Time elapsed: 0.624 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/nav/div/div[2]/ul[2]/li/a"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.gfr5u9}, goog:chromeOptions: {debuggerAddress: localhost:40275}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: cc42e5fb0469c3d8c5d5313f4812c29b
+*** Element info: {Using=xpath, value=/html/body/nav/div/div[2]/ul[2]/li/a}
+	at main.selenium.SeleniumHeaderButtonTests.testArticlesToNewArticle(SeleniumHeaderButtonTests.java:72)
+
+main.selenium.SeleniumHeaderButtonTests.testArticlesToArticles  Time elapsed: 0.628 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/nav/div/div[2]/ul[1]/li[2]/a"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.TZQMjI}, goog:chromeOptions: {debuggerAddress: localhost:34941}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 276b9c409fe916fddfc803365e236318
+*** Element info: {Using=xpath, value=/html/body/nav/div/div[2]/ul[1]/li[2]/a}
+	at main.selenium.SeleniumHeaderButtonTests.testArticlesToArticles(SeleniumHeaderButtonTests.java:65)
+
+main.selenium.SeleniumHeaderButtonTests.testHomeToNewArticle  Time elapsed: 0.608 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/nav/div/div[2]/ul[2]/li/a"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.LwACIi}, goog:chromeOptions: {debuggerAddress: localhost:36933}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 19e05e936a5003f6091046cde3592ee1
+*** Element info: {Using=xpath, value=/html/body/nav/div/div[2]/ul[2]/li/a}
+	at main.selenium.SeleniumHeaderButtonTests.testHomeToNewArticle(SeleniumHeaderButtonTests.java:51)
+
+main.selenium.SeleniumHeaderButtonTests.testHomeToHomeButton  Time elapsed: 0.561 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/nav/div/div[2]/ul[1]/li[1]/a"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.tiKTm4}, goog:chromeOptions: {debuggerAddress: localhost:38733}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: e693c47b85a7224400904bcaef4918f3
+*** Element info: {Using=xpath, value=/html/body/nav/div/div[2]/ul[1]/li[1]/a}
+	at main.selenium.SeleniumHeaderButtonTests.testHomeToHomeButton(SeleniumHeaderButtonTests.java:37)
+
+main.selenium.SeleniumHeaderButtonTests.testNewArticleToArticles  Time elapsed: 0.63 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/nav/div/div[2]/ul[1]/li[2]/a"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.e7YjxB}, goog:chromeOptions: {debuggerAddress: localhost:34619}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 321c243fb7d9f84703f6fd4dffa037ae
+*** Element info: {Using=xpath, value=/html/body/nav/div/div[2]/ul[1]/li[2]/a}
+	at main.selenium.SeleniumHeaderButtonTests.testNewArticleToArticles(SeleniumHeaderButtonTests.java:86)
+
+main.selenium.SeleniumHeaderButtonTests.testNewArticleToHome  Time elapsed: 0.625 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/nav/div/div[2]/ul[1]/li[1]/a"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.YOaNVm}, goog:chromeOptions: {debuggerAddress: localhost:41863}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 7908ef706105574c70855be02d38bb32
+*** Element info: {Using=xpath, value=/html/body/nav/div/div[2]/ul[1]/li[1]/a}
+	at main.selenium.SeleniumHeaderButtonTests.testNewArticleToHome(SeleniumHeaderButtonTests.java:79)
+
+main.selenium.SeleniumHeaderButtonTests.testArticlesToHome  Time elapsed: 0.601 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/nav/div/div[2]/ul[1]/li[1]/a"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.BIpySY}, goog:chromeOptions: {debuggerAddress: localhost:44547}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 2d1baa16a46736858d4c403fc6a37c43
+*** Element info: {Using=xpath, value=/html/body/nav/div/div[2]/ul[1]/li[1]/a}
+	at main.selenium.SeleniumHeaderButtonTests.testArticlesToHome(SeleniumHeaderButtonTests.java:58)
+
