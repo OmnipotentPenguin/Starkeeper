@@ -104,6 +104,5 @@ public class SeleniumArticleOptionsTests {
 		assertEquals("BBC", this.driver.findElement(starkeeper.findHomeFavouriteRowOneName).getText());
 		this.driver.findElement(starkeeper.homeFavouriteRowOneDelete).click();
 	}
-
-
 }
+*/
