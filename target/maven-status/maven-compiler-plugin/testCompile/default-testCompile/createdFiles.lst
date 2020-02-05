@@ -1,5 +1,3 @@
-main/selenium/SeleniumArticleOptionsTests.class
-main/selenium/SeleniumHeaderButtonTests.class
 main/pom/StarKeeperPOM.class
 main/service/ArticleServiceTests.class
 main/repository/ArticleRepositoryTests.class

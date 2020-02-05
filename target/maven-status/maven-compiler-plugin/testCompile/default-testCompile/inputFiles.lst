@@ -1,9 +1,7 @@
-/home/qa-admin/git/Starkeeper/src/test/java/main/pom/StarKeeperPOM.java
-/home/qa-admin/git/Starkeeper/src/test/java/main/repository/ArticleRepositoryTests.java
-/home/qa-admin/git/Starkeeper/src/test/java/main/rest/ArticleTagRestTests.java
-/home/qa-admin/git/Starkeeper/src/test/java/main/selenium/SeleniumHeaderButtonTests.java
-/home/qa-admin/git/Starkeeper/src/test/java/main/repository/ArticleTagRepositoryTests.java
-/home/qa-admin/git/Starkeeper/src/test/java/main/selenium/SeleniumArticleOptionsTests.java
-/home/qa-admin/git/Starkeeper/src/test/java/main/service/ArticleServiceTests.java
-/home/qa-admin/git/Starkeeper/src/test/java/main/rest/ArticleRestTests.java
-/home/qa-admin/git/Starkeeper/src/test/java/main/service/ArticleTagServiceTests.java
+/home/nimda/IdeaProjects/Starkeeper/src/test/java/main/service/ArticleServiceTests.java
+/home/nimda/IdeaProjects/Starkeeper/src/test/java/main/service/ArticleTagServiceTests.java
+/home/nimda/IdeaProjects/Starkeeper/src/test/java/main/rest/ArticleRestTests.java
+/home/nimda/IdeaProjects/Starkeeper/src/test/java/main/pom/StarKeeperPOM.java
+/home/nimda/IdeaProjects/Starkeeper/src/test/java/main/rest/ArticleTagRestTests.java
+/home/nimda/IdeaProjects/Starkeeper/src/test/java/main/repository/ArticleRepositoryTests.java
+/home/nimda/IdeaProjects/Starkeeper/src/test/java/main/repository/ArticleTagRepositoryTests.java

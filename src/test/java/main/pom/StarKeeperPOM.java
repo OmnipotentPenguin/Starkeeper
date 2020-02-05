@@ -3,11 +3,12 @@ package main.pom;
 import org.openqa.selenium.By;
 
 public class StarKeeperPOM {
-	
-	public String skHome = "http://18.130.130.183:8181/StarKeeper/index.html";
-	public String skArticles = "http://18.130.130.183:8181/StarKeeper/articles.html";
-	public String skNewArticle = "http://18.130.130.183:8181/StarKeeper/create_article.html";
-	
+
+	public String host = "http://localhost:";
+	public String skHome = "/StarKeeper/index.html";
+	public String skArticles = "/StarKeeper/articles.html";
+	public String skNewArticle = "/StarKeeper/create_article.html";
+
 	public By homeButton = By.xpath("/html/body/nav/div/div[2]/ul[1]/li[1]/a");
 	public By articlesButton = By.xpath("/html/body/nav/div/div[2]/ul[1]/li[2]/a");
 	public By newArticleButton = By.xpath("/html/body/nav/div/div[2]/ul[2]/li/a");	

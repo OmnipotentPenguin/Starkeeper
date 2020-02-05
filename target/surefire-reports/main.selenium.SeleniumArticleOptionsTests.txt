@@ -1,0 +1,43 @@
+-------------------------------------------------------------------------------
+Test set: main.selenium.SeleniumArticleOptionsTests
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 1.914 s <<< FAILURE! - in main.selenium.SeleniumArticleOptionsTests
+main.selenium.SeleniumArticleOptionsTests.testFavouriteArticle  Time elapsed: 0.697 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/div[2]/section/div[2]/div[1]/input"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.EvTSRB}, goog:chromeOptions: {debuggerAddress: localhost:39111}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 8270b753602b71ead2712ec5030fca71
+*** Element info: {Using=xpath, value=/html/body/div/div/div[2]/section/div[2]/div[1]/input}
+	at main.selenium.SeleniumArticleOptionsTests.testFavouriteArticle(SeleniumArticleOptionsTests.java:81)
+
+main.selenium.SeleniumArticleOptionsTests.testCreateArticle  Time elapsed: 0.577 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/div[2]/section/div[2]/div[1]/input"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.lW78kn}, goog:chromeOptions: {debuggerAddress: localhost:42897}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 3a5058646fb099dfdbc04a10d951ab2c
+*** Element info: {Using=xpath, value=/html/body/div/div/div[2]/section/div[2]/div[1]/input}
+	at main.selenium.SeleniumArticleOptionsTests.testCreateArticle(SeleniumArticleOptionsTests.java:37)
+
+main.selenium.SeleniumArticleOptionsTests.testDeleteArticle  Time elapsed: 0.633 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/div[2]/section/div[2]/div[1]/input"}
+  (Session info: headless chrome=79.0.3945.130)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'admin', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.0.0-23-generic', java.version: '11.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 79.0.3945.130, chrome: {chromedriverVersion: 79.0.3945.36 (3582db32b3389..., userDataDir: /tmp/.com.google.Chrome.zD5dmY}, goog:chromeOptions: {debuggerAddress: localhost:34025}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 3d5e954fff23ef5f5f74d7d95f1f5bb9
+*** Element info: {Using=xpath, value=/html/body/div/div/div[2]/section/div[2]/div[1]/input}
+	at main.selenium.SeleniumArticleOptionsTests.testDeleteArticle(SeleniumArticleOptionsTests.java:57)
+
