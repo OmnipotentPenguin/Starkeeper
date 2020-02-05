@@ -113,3 +113,4 @@ public class SeleniumHeaderButtonTests {
 		assertEquals(starkeeper.host+port+starkeeper.skNewArticle, this.driver.getCurrentUrl());
 	}
 }
+*/
