@@ -21,8 +21,10 @@ pipeline {
             }
         }
         stage('--publishToDocker--') {
-            steps {
-                sh "docker push omnipotentpenguin/starkeeper-dev:latest"
+            withDockerRegistry([ credentialsId: "dockerhub-adam", url: "" ]){
+                steps {
+                    sh "docker push omnipotentpenguin/starkeeper-dev:latest"
+                }
             }
         }        
     }
