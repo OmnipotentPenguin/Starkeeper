@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    agent { label 'docker' }
+    options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
     stages {
         stage('---clean---') {
             steps {
@@ -9,6 +12,7 @@ pipeline {
         stage('--package--') {
             steps {
                 sh "mvn package"
+                sh "docker build -t omnipotentpenguin/starkeeper-dev ."
             }
         }
         stage('--deploy--') {
@@ -16,5 +20,10 @@ pipeline {
                 sh "mvn deploy"
             }
         }
+        stage('--publishToDocker--') {
+            steps {
+                sh "docker push omnipotentpenguin/starkeeper-dev:latest"
+            }
+        }        
     }
 }
