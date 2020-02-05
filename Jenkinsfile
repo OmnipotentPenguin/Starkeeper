@@ -1,6 +1,8 @@
-
 pipeline {
     agent any
+    options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
     stages {
         stage('---clean---') {
             steps {
@@ -10,6 +12,7 @@ pipeline {
         stage('--package--') {
             steps {
                 sh "mvn package"
+                sh "docker build -t omnipotentpenguin/starkeeper-dev ."
             }
         }
         stage('--deploy--') {
@@ -17,5 +20,12 @@ pipeline {
                 sh "mvn deploy"
             }
         }
+        stage('--publishToDocker--') {
+            steps {
+                withDockerRegistry([ credentialsId: "dockerhub-adam", url: "" ]){
+                    sh "docker push omnipotentpenguin/starkeeper-dev:latest"
+                }
+            }
+        }        
     }
 }
