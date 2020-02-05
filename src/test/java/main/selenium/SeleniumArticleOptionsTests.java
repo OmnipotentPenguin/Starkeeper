@@ -89,7 +89,7 @@ public class SeleniumArticleOptionsTests {
 		this.driver.findElement(starkeeper.articlesRowOneDelete).click();
 	}
 	
-	@Test
+/*	@Test
 	public void testFavouriteArticle() throws InterruptedException {
 		this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -103,6 +103,6 @@ public class SeleniumArticleOptionsTests {
 		assertEquals("BBC", this.driver.findElement(starkeeper.findHomeFavouriteRowOneName).getText());
 		this.driver.findElement(starkeeper.homeFavouriteRowOneDelete).click();
 	}
-
+*/
 
 }
