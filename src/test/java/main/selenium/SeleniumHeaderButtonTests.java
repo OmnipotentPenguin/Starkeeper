@@ -42,72 +42,72 @@ public class SeleniumHeaderButtonTests {
 	
 	@Test
 	public void testHomeToHomeButton() throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.get(starkeeper.host+port+starkeeper.skHome);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.homeButton).click();		
 		assertEquals(starkeeper.host+port+starkeeper.skHome, this.driver.getCurrentUrl());
 	}
 	
 	@Test
 	public void testHomeToArticlesButton() throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.get(starkeeper.host+port+starkeeper.skHome);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.articlesButton).click();		
 		assertEquals(starkeeper.host+port+starkeeper.skArticles, this.driver.getCurrentUrl());
 	}
 	
 	@Test
 	public void testHomeToNewArticle() throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.get(starkeeper.host+port+starkeeper.skHome);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.newArticleButton).click();		
 		assertEquals(starkeeper.host+port+starkeeper.skNewArticle, this.driver.getCurrentUrl());
 	}
 	
 	@Test
 	public void testArticlesToHome() throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.get(starkeeper.host+port+starkeeper.skArticles);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.homeButton).click();		
 		assertEquals(starkeeper.host+port+starkeeper.skHome, this.driver.getCurrentUrl());
 	}
 	
 	@Test
 	public void testArticlesToArticles() throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.get(starkeeper.host+port+starkeeper.skArticles);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.articlesButton).click();		
 		assertEquals(starkeeper.host+port+starkeeper.skArticles, this.driver.getCurrentUrl());
 	}
 	
 	@Test
 	public void testArticlesToNewArticle() throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.get(starkeeper.host+port+starkeeper.skArticles);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.newArticleButton).click();		
 		assertEquals(starkeeper.host+port+starkeeper.skNewArticle, this.driver.getCurrentUrl());
 	}
 	
 	@Test
 	public void testNewArticleToHome() throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.homeButton).click();		
 		assertEquals(starkeeper.host+port+starkeeper.skHome, this.driver.getCurrentUrl());
 	}
 	
 	@Test
 	public void testNewArticleToArticles() throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.articlesButton).click();		
 		assertEquals(starkeeper.host+port+starkeeper.skArticles, this.driver.getCurrentUrl());
 	}
 	
 	@Test
 	public void testNewArticleToNewArticle() throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.newArticleButton).click();		
 		assertEquals(starkeeper.host+port+starkeeper.skNewArticle, this.driver.getCurrentUrl());
 	}
