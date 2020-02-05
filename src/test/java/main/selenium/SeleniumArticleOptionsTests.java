@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -42,67 +44,84 @@ public class SeleniumArticleOptionsTests {
 	public void tearDown() {
 		driver.quit();
 	}
-	
+
 	@Test
 	public void testCreateArticle() throws InterruptedException {
-		this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		this.driver.findElement(starkeeper.nameInput).sendKeys("Google Home");
-		this.driver.findElement(starkeeper.descriptionInput).sendKeys("The homepage for Google.com");
-		this.driver.findElement(starkeeper.sourceInput).sendKeys("Google");
-		this.driver.findElement(starkeeper.urlInput).sendKeys("google.com");
-		this.driver.findElement(starkeeper.ratingInput).sendKeys("5");
-		this.driver.findElement(starkeeper.tagInput).sendKeys("Search Engine");	
-		this.driver.findElement(starkeeper.tagInput).sendKeys(Keys.ENTER);
-		this.driver.findElement(starkeeper.tagInput).sendKeys("Homepage");	
-		this.driver.findElement(starkeeper.tagInput).sendKeys(Keys.ENTER);	
-		this.driver.findElement(starkeeper.submitButton).click();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		this.driver.findElement(starkeeper.articlesButton).click();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		assertEquals("Google Home", this.driver.findElement(starkeeper.findRowOneArticleName).getText());
-		this.driver.findElement(starkeeper.articlesRowOneDelete).click();
+		for (int i=0; i<10;i++){
+			try {
+				this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				this.driver.findElement(starkeeper.nameInput).sendKeys("Google Home");
+				this.driver.findElement(starkeeper.descriptionInput).sendKeys("The homepage for Google.com");
+				this.driver.findElement(starkeeper.sourceInput).sendKeys("Google");
+				this.driver.findElement(starkeeper.urlInput).sendKeys("google.com");
+				this.driver.findElement(starkeeper.ratingInput).sendKeys("5");
+				this.driver.findElement(starkeeper.tagInput).sendKeys("Search Engine");
+				this.driver.findElement(starkeeper.tagInput).sendKeys(Keys.ENTER);
+				this.driver.findElement(starkeeper.tagInput).sendKeys("Homepage");
+				this.driver.findElement(starkeeper.tagInput).sendKeys(Keys.ENTER);
+				this.driver.findElement(starkeeper.submitButton).click();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				this.driver.findElement(starkeeper.articlesButton).click();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				assertEquals("Google Home", this.driver.findElement(starkeeper.findRowOneArticleName).getText());
+				this.driver.findElement(starkeeper.articlesRowOneDelete).click();
+			}
+			catch(NoSuchElementException e){
+				driver.navigate().refresh();
+			}
+		}
 	}
 	
 	@Test
 	public void testDeleteArticle() throws InterruptedException {
-		this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		this.driver.findElement(starkeeper.nameInput).sendKeys("Google Home");
-		this.driver.findElement(starkeeper.descriptionInput).sendKeys("The homepage for Google.com");
-		this.driver.findElement(starkeeper.sourceInput).sendKeys("Google");
-		this.driver.findElement(starkeeper.urlInput).sendKeys("google.com");
-		this.driver.findElement(starkeeper.ratingInput).sendKeys("5");
-		this.driver.findElement(starkeeper.tagInput).sendKeys("Search Engine");	
-		this.driver.findElement(starkeeper.tagInput).sendKeys(Keys.ENTER);
-		this.driver.findElement(starkeeper.tagInput).sendKeys("Homepage");	
-		this.driver.findElement(starkeeper.tagInput).sendKeys(Keys.ENTER);	
-		this.driver.findElement(starkeeper.submitButton).click();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		this.driver.findElement(starkeeper.submitButton).click();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		this.driver.findElement(starkeeper.articlesButton).click();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		this.driver.findElement(starkeeper.articlesRowOneDelete).click();
-		Thread.sleep(1000);
-		assertEquals("Google Home", this.driver.findElement(starkeeper.findRowOneArticleName).getText());
-		this.driver.findElement(starkeeper.articlesRowOneDelete).click();
+		for (int i=0; i<10;i++) {
+			try {
+				this.driver.get(starkeeper.host + port + starkeeper.skNewArticle);
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				this.driver.findElement(starkeeper.nameInput).sendKeys("Google Home");
+				this.driver.findElement(starkeeper.descriptionInput).sendKeys("The homepage for Google.com");
+				this.driver.findElement(starkeeper.sourceInput).sendKeys("Google");
+				this.driver.findElement(starkeeper.urlInput).sendKeys("google.com");
+				this.driver.findElement(starkeeper.ratingInput).sendKeys("5");
+				this.driver.findElement(starkeeper.tagInput).sendKeys("Search Engine");
+				this.driver.findElement(starkeeper.tagInput).sendKeys(Keys.ENTER);
+				this.driver.findElement(starkeeper.tagInput).sendKeys("Homepage");
+				this.driver.findElement(starkeeper.tagInput).sendKeys(Keys.ENTER);
+				this.driver.findElement(starkeeper.submitButton).click();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				this.driver.findElement(starkeeper.submitButton).click();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				this.driver.findElement(starkeeper.articlesButton).click();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				this.driver.findElement(starkeeper.articlesRowOneDelete).click();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				assertEquals("Google Home", this.driver.findElement(starkeeper.findRowOneArticleName).getText());
+				this.driver.findElement(starkeeper.articlesRowOneDelete).click();
+			} catch (NoSuchElementException e) {
+				driver.navigate().refresh();
+			}
+		}
 	}
 	
-/*	@Test
+@Test
 	public void testFavouriteArticle() throws InterruptedException {
-		this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		this.driver.findElement(starkeeper.nameInput).sendKeys("BBC");
-		this.driver.findElement(starkeeper.submitButton).click();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		this.driver.findElement(starkeeper.homeButton).click();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		this.driver.findElement(starkeeper.homeLatestRowOneFavourite).click();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		assertEquals("BBC", this.driver.findElement(starkeeper.findHomeFavouriteRowOneName).getText());
-		this.driver.findElement(starkeeper.homeFavouriteRowOneDelete).click();
+		for (int i=0; i<10;i++) {
+			try {
+				this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				this.driver.findElement(starkeeper.nameInput).sendKeys("BBC");
+				this.driver.findElement(starkeeper.submitButton).click();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				this.driver.findElement(starkeeper.homeButton).click();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				this.driver.findElement(starkeeper.homeLatestRowOneFavourite).click();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				assertEquals("BBC", this.driver.findElement(starkeeper.findHomeFavouriteRowOneName).getText());
+				this.driver.findElement(starkeeper.homeFavouriteRowOneDelete).click();
+			} catch (NoSuchElementException e) {
+				driver.navigate().refresh();
+			}
+		}
 	}
-*/
-
 }
