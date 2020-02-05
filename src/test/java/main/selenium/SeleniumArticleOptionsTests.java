@@ -46,7 +46,7 @@ public class SeleniumArticleOptionsTests {
 	@Test
 	public void testCreateArticle() throws InterruptedException {
 		this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.nameInput).sendKeys("Google Home");
 		this.driver.findElement(starkeeper.descriptionInput).sendKeys("The homepage for Google.com");
 		this.driver.findElement(starkeeper.sourceInput).sendKeys("Google");
@@ -67,7 +67,7 @@ public class SeleniumArticleOptionsTests {
 	@Test
 	public void testDeleteArticle() throws InterruptedException {
 		this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.nameInput).sendKeys("Google Home");
 		this.driver.findElement(starkeeper.descriptionInput).sendKeys("The homepage for Google.com");
 		this.driver.findElement(starkeeper.sourceInput).sendKeys("Google");
@@ -92,7 +92,7 @@ public class SeleniumArticleOptionsTests {
 	@Test
 	public void testFavouriteArticle() throws InterruptedException {
 		this.driver.get(starkeeper.host+port+starkeeper.skNewArticle);
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		this.driver.findElement(starkeeper.nameInput).sendKeys("BBC");
 		this.driver.findElement(starkeeper.submitButton).click();
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
