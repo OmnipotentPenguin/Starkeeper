@@ -1,9 +1,4 @@
 pipeline {
-    
-    environment {
-    registry = "omnipotentpenguin/starkeeper-dev"
-    registryCredential = ‘dockerhub-adam’
-    }
     agent any
     options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
