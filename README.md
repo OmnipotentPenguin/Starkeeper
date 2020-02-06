@@ -82,14 +82,16 @@ The project uses jenkins ([download guide](https://jenkins.io/download/)) to pul
 <a name="tech"></a>
 ### Technologies Used
 
-* H2 Database Engine - Database
-* Java/Eclipse - Back-End
+* H2 Database Engine - Database (Testing)
+* AWS RDS MYSQL Database - Database (Production)
+* Java - Back-End
 * Visual Studio Code - Front-End
 * Maven - Dependency Management
 * [Git](https://github.com/OmnipotentPenguin/Starkeeper) - VCS
 * [Trello](https://trello.com/b/4hNrMAWC/star-keeper-development) - Project Tracking
 * Jenkins - CI Server
-* Tomcat - Deployment
+* Docker - Deployment
+* Nexus - Artifact Repository
 * Surefire - Test Reporting
 * SonarQube - Static Testing
 * AWS - Live Environment
