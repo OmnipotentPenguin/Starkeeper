@@ -75,9 +75,8 @@ JUnit, Mockito and Selenium were used for automated testing, with test coverage 
 <a name="depl"></a>
 ## Deployment
 
-The build, test and deployment process was automated using Jenkins, with a webhook to GitHub which was triggered with every push event
-
-This application can be deployed both locally and externally through a virtual machine.
+This project implements a basic CI/CD pipeline using github, jenkins, docker hub, nexus and aws.
+The project uses jenkins ([download guide](https://jenkins.io/download/)) to pull any new commits from github and then build them using a [Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/). The built jar is then sent on to [nexus](https://www.sonatype.com/download-oss-sonatype) where it is safely stored for later use. The jar is then placed into a [docker](https://docs.docker.com/install/) container by a Dockerfile and uploaded to [docker hub](https://docs.docker.com/docker-hub/). An AWS [EC2](https://docs.aws.amazon.com/ec2/index.html) that is running on a [VPC](https://docs.aws.amazon.com/vpc/index.html) with a mysql [RDS](https://docs.aws.amazon.com/rds/index.html) on it the pulls down the updated docker image from docker hub and starts running the new container at the prompting of the Jenkinsfile through ssh connection.
 
 ![Deployment Pipeline](/Documentation/ci-pipeline.png)
 <a name="tech"></a>
